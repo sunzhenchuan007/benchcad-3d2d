@@ -1,0 +1,15 @@
+{
+  "schema_version": "dimension-chain-example/1",
+  "case_id": "synthetic_dimension_chain",
+  "units": "mm",
+  "features": [{"id": "hole_1", "type": "through_hole", "center": [20, 15], "diameter": 10}],
+  "views": [{"id": "top", "type": "orthographic", "direction": [0, 0, 1]}],
+  "dimensions": [
+    {"id": "d_width", "view_id": "top", "type": "signed_distance", "axis": "x", "from": "left.x", "to": "right.x", "value": 50},
+    {"id": "d_right", "view_id": "top", "type": "signed_distance", "axis": "x", "from": "hole_1.center.x", "to": "right.x", "value": 30},
+    {"id": "d_height", "view_id": "top", "type": "signed_distance", "axis": "y", "from": "bottom.y", "to": "top.y", "value": 40},
+    {"id": "d_top", "view_id": "top", "type": "signed_distance", "axis": "y", "from": "hole_1.center.y", "to": "top.y", "value": 25},
+    {"id": "d_diameter", "view_id": "top", "type": "diameter", "parameter": "hole_1.diameter", "value": 10}
+  ],
+  "structure": [{"id": "a_through", "view_id": "top", "entity": "hole_1", "type": "termination", "value": "through"}]
+}

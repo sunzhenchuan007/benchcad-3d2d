@@ -25,6 +25,9 @@ tools/verify_sources.py
 
 - [Task and scoring proposal](docs/DESIGN.md)
 - [Case contract](docs/CASE_SPEC.md)
+- [Input and output layout](docs/INPUT_OUTPUT.md)
+- [Dimension-chain search algorithm](docs/RELATION_SEARCH.md)
+- [Worked JSON example](examples/dimension_chain/README.md)
 - [Contributing](CONTRIBUTING.md)
 - [Review checklist](docs/REVIEWING.md)
 - [Status and next implementation steps](docs/STATUS.md)

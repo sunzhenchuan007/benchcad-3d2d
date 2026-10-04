@@ -58,6 +58,8 @@ STEP 通常保留最终边界表示，不保留可直接读取的原始建模历
 
 ## 4 如何验证二维工程图
 
+具体文件约定见 [INPUT_OUTPUT.md](INPUT_OUTPUT.md)；原讨论中的分轴建图、BFS／DFS、带权并查集及冗余检查见 [RELATION_SEARCH.md](RELATION_SEARCH.md)。[尺寸链示例](../examples/dimension_chain/README.md) 展示 GT、模型关系记录和人工核算的预期行为。
+
 ### 接受等价标注
 
 评分器比较信息是否等价，不比较模型是否选择了与参考完全相同的尺寸链。例如，总长 50、孔中心距左边 20，与总长 50、孔中心距右边 30，可以提供相同的位置约束。

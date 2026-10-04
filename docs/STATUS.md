@@ -6,6 +6,8 @@
 - Sixteen STEP/SLDPRT assets with original version paths and source records.
 - File-size and SHA-256 integrity verification.
 - Revised task proposal covering feature recognition, degrees of freedom, dimensions, views, and proposed weights.
+- Explicit target input/GT/submission layout and the dimension-chain search specification.
+- A synthetic JSON relation example with manually derived expectations; no executed solver or complete CAD case is implied.
 
 | Case | Files | Source state | Geometry pairing | GT extraction |
 | --- | ---: | --- | --- | --- |

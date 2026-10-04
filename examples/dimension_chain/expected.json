@@ -1,0 +1,26 @@
+{
+  "schema_version": "dimension-chain-example/1",
+  "basis": "Manually derived expectations, not execution results",
+  "baseline": {
+    "required_continuous_variables": 5,
+    "determined_continuous_variables": 5,
+    "required_structure_conditions": 1,
+    "expressed_structure_conditions": 1,
+    "complete_within_example_scope": true,
+    "redundant_dimension_ids": [],
+    "proofs": {
+      "right.x": ["d_width"],
+      "top.y": ["d_height"],
+      "hole_1.center.x": ["d_width", "d_right"],
+      "hole_1.center.y": ["d_height", "d_top"],
+      "hole_1.diameter": ["d_diameter"]
+    }
+  },
+  "perturbations": [
+    {"change": "Remove d_right", "expected": "hole_1.center.x is missing despite features declaring x=20"},
+    {"change": "Replace d_right with hole_1.center.x - left.x = 20", "expected": "Same complete result"},
+    {"change": "Add hole_1.center.x - left.x = 20 while retaining d_right", "expected": "One redundant constraint; either direct or indirect position annotation can be removed, but not both"},
+    {"change": "Add hole_1.center.x - left.x = 21", "expected": "Inconsistent X component; do not silently count its conflicting values as determined"},
+    {"change": "Remove a_through", "expected": "Continuous variables remain determined; required through condition is missing"}
+  ]
+}

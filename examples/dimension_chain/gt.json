@@ -1,0 +1,22 @@
+{
+  "schema_version": "dimension-chain-example/1",
+  "case_id": "synthetic_dimension_chain",
+  "synthetic": true,
+  "scope": "Five scalar variables and a through condition; not full 3D geometry",
+  "units": "mm",
+  "geometry": {
+    "anchors": {"left.x": 0, "bottom.y": 0}
+  },
+  "entities": [
+    {"id": "body", "type": "rectangular_profile", "width": 50, "height": 40},
+    {"id": "hole_1", "type": "through_hole", "center": [20, 15], "diameter": 10}
+  ],
+  "required_variables": [
+    {"id": "right.x", "axis": "x", "value": 50},
+    {"id": "top.y", "axis": "y", "value": 40},
+    {"id": "hole_1.center.x", "axis": "x", "value": 20},
+    {"id": "hole_1.center.y", "axis": "y", "value": 15},
+    {"id": "hole_1.diameter", "type": "diameter", "value": 10}
+  ],
+  "structure": [{"entity": "hole_1", "type": "termination", "value": "through"}]
+}
