@@ -11,12 +11,19 @@
     {"id": "body", "type": "rectangular_profile", "width": 50, "height": 40},
     {"id": "hole_1", "type": "through_hole", "center": [20, 15], "diameter": 10}
   ],
+  "variables": {
+    "right.x": {"axis": "x", "value": 50},
+    "top.y": {"axis": "y", "value": 40},
+    "hole_1.center.x": {"axis": "x", "value": 20},
+    "hole_1.center.y": {"axis": "y", "value": 15},
+    "hole_1.diameter": {"type": "diameter", "value": 10}
+  },
   "required_variables": [
-    {"id": "right.x", "axis": "x", "value": 50},
-    {"id": "top.y", "axis": "y", "value": 40},
-    {"id": "hole_1.center.x", "axis": "x", "value": 20},
-    {"id": "hole_1.center.y", "axis": "y", "value": 15},
-    {"id": "hole_1.diameter", "type": "diameter", "value": 10}
+    "right.x",
+    "top.y",
+    "hole_1.center.x",
+    "hole_1.center.y",
+    "hole_1.diameter"
   ],
   "structure": [{"entity": "hole_1", "type": "termination", "value": "through"}]
 }

@@ -28,10 +28,41 @@ cases/<case_id>/
 | `case_id` | 与输入 STEP 对应的案例标识 |
 | `units`、`geometry` | 单位、坐标约定和固定基准 |
 | `entities` | 特征类型、几何引用、位置及尺寸参数 |
-| `required_variables` | 必须由图纸信息确定的连续量 |
+| `variables` | 参数定义表：按参数名保存真实数值，以及轴向或尺寸类型 |
+| `required_variables` | 参数名列表：列出必须通过图纸标注直接确定或间接推导的几何参数 |
 | `structure` | 通孔／盲孔、数量、阵列、对称等离散或结构要求 |
 
 评分 GT 不规定必须标“左边 20”还是“右边 30”。它规定需要确定哪个几何量，并保留三维真值用于核验。
+
+### required_variables 是一个列表
+
+`required_variables` 的类型是字符串数组，不是一个数字，也不是参数数值的集合。每个字符串是一个参数名，必须能在同一份 GT 的 `variables` 表中找到定义。
+
+例如，在基准面和孔轴方向已确定时，一个盲孔可以有以下四个待检查参数。这里的数值仅用于说明格式：
+
+```json
+{
+  "units": "mm",
+  "variables": {
+    "hole_1.center.x": {"axis": "x", "value": 20},
+    "hole_1.center.y": {"axis": "y", "value": 30},
+    "hole_1.diameter": {"type": "diameter", "value": 10},
+    "hole_1.depth": {"type": "depth", "value": 15}
+  },
+  "required_variables": [
+    "hole_1.center.x",
+    "hole_1.center.y",
+    "hole_1.diameter",
+    "hole_1.depth"
+  ]
+}
+```
+
+- `required_variables` 回答“要检查哪些参数”：孔中心 X、孔中心 Y、孔径、孔深。
+- `variables` 回答“这些参数的真值是多少”：分别是 20、30、10、15 mm。
+- 列表长度是 4，表示有四个检查目标；这个 4 不是字段本身的值，也不要求图纸恰好出现四个数字。
+
+评分器逐项检查图纸的尺寸关系能否确定这些参数。直接标出 X=20 可以，通过总长 50 与右距 30 推导出 X=20 也可以。GT 中的真值用于核验，不能预先当作模型已经表达的已知量。列表长度是否等于独立自由度，还需结合参数间的约束判断。
 
 单案例保存为 `gt/gt.json`；批处理可把各案例对象逐行汇总成 `gt.jsonl`，每个案例一行。JSONL 是导出的汇总视图，不另行手工维护第二份答案。
 

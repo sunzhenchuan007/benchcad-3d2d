@@ -8,6 +8,8 @@
 - [prediction.json](prediction.json)：改用右边和上边标注孔位置，包含视图引用和结构声明。
 - [expected.json](expected.json)：人工推导的预期结果与删改实验，不是程序运行报告。
 
+`gt.json` 中的 `required_variables` 是五个参数名组成的列表；它们的真实数值与类型放在 `variables` 表中。比如 `required_variables` 列出 `hole_1.center.x`，而 `variables["hole_1.center.x"].value` 保存真值 20。验证器需要从模型的标注关系推导该值，不能直接拿 GT 真值补全模型的答案。
+
 X 图：`left.x=0 → right.x=50 → hole_1.center.x=20`。
 
 Y 图：`bottom.y=0 → top.y=40 → hole_1.center.y=15`。
