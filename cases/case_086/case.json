@@ -1,0 +1,33 @@
+{
+  "schema_version": "benchcad-3d2d-source/1",
+  "case_id": "case_086",
+  "source_case_number": 86,
+  "title": "Housing",
+  "pilot_group": "complex_structure",
+  "status": "source_collected",
+  "pairing_verified": false,
+  "gt_extracted": false,
+  "input_step": null,
+  "gt_source": null,
+  "source_folder_url": "https://drive.google.com/drive/folders/1yl4Ia9Ltwy-MRi6YxwPA2lIFUsU9s9j_",
+  "files": [
+    {
+      "path": "sources/housing.SLDPRT",
+      "kind": "sldprt",
+      "bytes": 4991872,
+      "sha256": "4a34df516a81ceba71ffaf3bf2c07c270c283460c8871eee58cbee26f019674b",
+      "drive_id": "1TBaKE8HCD0_i_ummOB1r6MIBi9rM0z2f",
+      "source_url": "https://drive.google.com/file/d/1TBaKE8HCD0_i_ummOB1r6MIBi9rM0z2f/view?usp=drivesdk",
+      "original_path": "cases/86/housing.SLDPRT"
+    },
+    {
+      "path": "sources/housing.step",
+      "kind": "step",
+      "bytes": 20338782,
+      "sha256": "03164e22100c63ed11fc30979252f486d9bb77466245c42d60cd7463be0544a7",
+      "drive_id": "10t32XPqHz_Tj5LDxF-HJfILoJwPAoa76",
+      "source_url": "https://drive.google.com/file/d/10t32XPqHz_Tj5LDxF-HJfILoJwPAoa76/view?usp=drivesdk",
+      "original_path": "cases/86/housing.step"
+    }
+  ]
+}

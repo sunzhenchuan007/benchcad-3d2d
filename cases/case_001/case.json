@@ -1,0 +1,33 @@
+{
+  "schema_version": "benchcad-3d2d-source/1",
+  "case_id": "case_001",
+  "source_case_number": 1,
+  "title": "Cylinder body",
+  "pilot_group": "equivalent_dimensions",
+  "status": "source_collected",
+  "pairing_verified": false,
+  "gt_extracted": false,
+  "input_step": null,
+  "gt_source": null,
+  "source_folder_url": "https://drive.google.com/drive/folders/1C-bMLnUiD99Olv-w2LPRjb1A9Q6Yw2r7",
+  "files": [
+    {
+      "path": "sources/raw/01_缸体.SLDPRT",
+      "kind": "sldprt",
+      "bytes": 425903,
+      "sha256": "3e1883bb89b18197d8f99e893d56b07e246970177ff12dcb9f78b547b17d10c1",
+      "drive_id": "1QHJa3e8ycTCWd4rLXBQhFReD2n5Vy21u",
+      "source_url": "https://drive.google.com/file/d/1QHJa3e8ycTCWd4rLXBQhFReD2n5Vy21u/view?usp=drivesdk",
+      "original_path": "cases/01_缸体_raw_verified_szc/raw/01_缸体.SLDPRT"
+    },
+    {
+      "path": "sources/raw/01_缸体.STEP",
+      "kind": "step",
+      "bytes": 376779,
+      "sha256": "8d77d7ac7ef2ddb50b2622c9347653a6981ad4db7d45226bce6fe54cb04943d8",
+      "drive_id": "17HDB_txqPwEQdMDp97gnAJFtmBRSiQnf",
+      "source_url": "https://drive.google.com/file/d/17HDB_txqPwEQdMDp97gnAJFtmBRSiQnf/view?usp=drivesdk",
+      "original_path": "cases/01_缸体_raw_verified_szc/raw/01_缸体.STEP"
+    }
+  ]
+}

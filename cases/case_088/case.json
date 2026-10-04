@@ -1,0 +1,51 @@
+{
+  "schema_version": "benchcad-3d2d-source/1",
+  "case_id": "case_088",
+  "source_case_number": 88,
+  "title": "PP18.5A",
+  "pilot_group": "basic_pipeline",
+  "status": "source_collected",
+  "pairing_verified": false,
+  "gt_extracted": false,
+  "input_step": null,
+  "gt_source": null,
+  "source_folder_url": "https://drive.google.com/drive/folders/1Tsa3gJnO4O2TsiebzatXW2IqI72bVQza",
+  "files": [
+    {
+      "path": "sources/provenance/prepared/PP18.5A.SLDPRT",
+      "kind": "sldprt",
+      "bytes": 338307,
+      "sha256": "3ad92351cc09a766bf52b3d55de80c75f2c24b387dcdb87358d902f210408260",
+      "drive_id": "173n5CgAjzHZSreGIrcv_KfwmmcjMCl_8",
+      "source_url": "https://drive.google.com/file/d/173n5CgAjzHZSreGIrcv_KfwmmcjMCl_8/view?usp=drivesdk",
+      "original_path": "cases/Case 88/provenance/prepared/PP18.5A.SLDPRT"
+    },
+    {
+      "path": "sources/provenance/raw/PP18.5A.STEP",
+      "kind": "step",
+      "bytes": 552481,
+      "sha256": "44c55d02c363063bd6fbf9abe65566a6c56a39ee69f637f78c31c39e55b41720",
+      "drive_id": "10fkHFFMYVMSjC3-ysd7Q859Wbs3AXJE5",
+      "source_url": "https://drive.google.com/file/d/10fkHFFMYVMSjC3-ysd7Q859Wbs3AXJE5/view?usp=drivesdk",
+      "original_path": "cases/Case 88/provenance/raw/PP18.5A.STEP"
+    },
+    {
+      "path": "sources/provenance/raw/PP18.5A.SLDPRT",
+      "kind": "sldprt",
+      "bytes": 338307,
+      "sha256": "3ad92351cc09a766bf52b3d55de80c75f2c24b387dcdb87358d902f210408260",
+      "drive_id": "1v4weLTNnX-jSXUUnoYMHgb6d-a8JewKx",
+      "source_url": "https://drive.google.com/file/d/1v4weLTNnX-jSXUUnoYMHgb6d-a8JewKx/view?usp=drivesdk",
+      "original_path": "cases/Case 88/provenance/raw/PP18.5A.SLDPRT"
+    },
+    {
+      "path": "sources/gt/gt.step",
+      "kind": "step",
+      "bytes": 552481,
+      "sha256": "44c55d02c363063bd6fbf9abe65566a6c56a39ee69f637f78c31c39e55b41720",
+      "drive_id": "17QHPHGoJ_qS-gK3VMKvqC4f3fjnBVCwn",
+      "source_url": "https://drive.google.com/file/d/17QHPHGoJ_qS-gK3VMKvqC4f3fjnBVCwn/view?usp=drivesdk",
+      "original_path": "cases/Case 88/gt/gt.step"
+    }
+  ]
+}

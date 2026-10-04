@@ -1,0 +1,33 @@
+{
+  "schema_version": "benchcad-3d2d-source/1",
+  "case_id": "case_015",
+  "source_case_number": 15,
+  "title": "Moving jaw",
+  "pilot_group": "complex_structure",
+  "status": "source_collected",
+  "pairing_verified": false,
+  "gt_extracted": false,
+  "input_step": null,
+  "gt_source": null,
+  "source_folder_url": "https://drive.google.com/drive/folders/1m3mbLvDy-rKSsX9IZh_sTKhCpIsliOlY",
+  "files": [
+    {
+      "path": "sources/raw/15_动鄂.SLDPRT",
+      "kind": "sldprt",
+      "bytes": 565311,
+      "sha256": "e3341322c427c68a63bfce7bbe6c3fced5c592650d572db228bb87345f509c90",
+      "drive_id": "1kaBqOZW_IINStRx9TuqMPyoxZgi_Umfu",
+      "source_url": "https://drive.google.com/file/d/1kaBqOZW_IINStRx9TuqMPyoxZgi_Umfu/view?usp=drivesdk",
+      "original_path": "cases/15_动鄂_done_zjs_verified_szc/raw/15_动鄂.SLDPRT"
+    },
+    {
+      "path": "sources/raw/15_动鄂.step",
+      "kind": "step",
+      "bytes": 709936,
+      "sha256": "3c9a7eef9e8073983dccbb37ad564d1a63c904a606c853e1b35c59b2c3e668e4",
+      "drive_id": "1NE-0cOZp2jegKypTpIoxqwBTlITaXHuX",
+      "source_url": "https://drive.google.com/file/d/1NE-0cOZp2jegKypTpIoxqwBTlITaXHuX/view?usp=drivesdk",
+      "original_path": "cases/15_动鄂_done_zjs_verified_szc/raw/15_动鄂.step"
+    }
+  ]
+}

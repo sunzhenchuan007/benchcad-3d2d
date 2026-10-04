@@ -1,0 +1,11 @@
+* text=auto
+*.md text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.step binary
+*.STEP binary
+*.stp binary
+*.STP binary
+*.sldprt binary
+*.SLDPRT binary

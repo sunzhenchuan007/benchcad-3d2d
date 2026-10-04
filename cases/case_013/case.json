@@ -1,0 +1,42 @@
+{
+  "schema_version": "benchcad-3d2d-source/1",
+  "case_id": "case_013",
+  "source_case_number": 13,
+  "title": "Valve body",
+  "pilot_group": "equivalent_dimensions",
+  "status": "source_collected",
+  "pairing_verified": false,
+  "gt_extracted": false,
+  "input_step": null,
+  "gt_source": null,
+  "source_folder_url": "https://drive.google.com/drive/folders/12rYauBdMs56NCjnFxqi33VC8CaakjBra",
+  "files": [
+    {
+      "path": "sources/raw/13_阀体.SLDPRT",
+      "kind": "sldprt",
+      "bytes": 405224,
+      "sha256": "8fe65f2c24d17482a366671bdb6d51b6edb6b1a05b883d3ae42b1bfa9ffeb3b7",
+      "drive_id": "1jgBj_mrjm1HhlcdWSqnmgLFr0d6JOHl8",
+      "source_url": "https://drive.google.com/file/d/1jgBj_mrjm1HhlcdWSqnmgLFr0d6JOHl8/view?usp=drivesdk",
+      "original_path": "cases/13_阀体_done_szc_verified_szc/raw/13_阀体.SLDPRT"
+    },
+    {
+      "path": "sources/raw/13_阀体.STEP",
+      "kind": "step",
+      "bytes": 283859,
+      "sha256": "89d5ad4e1bdf1ca58a2af87bf03e4593bd84e6630ff12810fdac2eac0341effc",
+      "drive_id": "1bXTUHfhPI9RvSxpvqFzbDLUCuTVOAQRM",
+      "source_url": "https://drive.google.com/file/d/1bXTUHfhPI9RvSxpvqFzbDLUCuTVOAQRM/view?usp=drivesdk",
+      "original_path": "cases/13_阀体_done_szc_verified_szc/raw/13_阀体.STEP"
+    },
+    {
+      "path": "sources/done_szc/13_model.step",
+      "kind": "step",
+      "bytes": 280052,
+      "sha256": "0ad459f5ab3cc4e810bbfbb535a6913dbe48025a8639d73a72466a0ab511fba6",
+      "drive_id": "1KjAK3Arhtvf_p4N6Sjlz-VU3qw33SPBg",
+      "source_url": "https://drive.google.com/file/d/1KjAK3Arhtvf_p4N6Sjlz-VU3qw33SPBg/view?usp=drivesdk",
+      "original_path": "cases/13_阀体_done_szc_verified_szc/done_szc/13_model.step"
+    }
+  ]
+}

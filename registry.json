@@ -1,0 +1,53 @@
+{
+  "schema_version": "benchcad-3d2d-registry/1",
+  "cases": [
+    {
+      "case_id": "case_001",
+      "path": "cases/case_001",
+      "source_case_number": 1,
+      "pilot_group": "equivalent_dimensions",
+      "status": "source_collected",
+      "file_count": 2
+    },
+    {
+      "case_id": "case_013",
+      "path": "cases/case_013",
+      "source_case_number": 13,
+      "pilot_group": "equivalent_dimensions",
+      "status": "source_collected",
+      "file_count": 3
+    },
+    {
+      "case_id": "case_015",
+      "path": "cases/case_015",
+      "source_case_number": 15,
+      "pilot_group": "complex_structure",
+      "status": "source_collected",
+      "file_count": 2
+    },
+    {
+      "case_id": "case_084",
+      "path": "cases/case_084",
+      "source_case_number": 84,
+      "pilot_group": "basic_pipeline",
+      "status": "source_collected",
+      "file_count": 3
+    },
+    {
+      "case_id": "case_086",
+      "path": "cases/case_086",
+      "source_case_number": 86,
+      "pilot_group": "complex_structure",
+      "status": "source_collected",
+      "file_count": 2
+    },
+    {
+      "case_id": "case_088",
+      "path": "cases/case_088",
+      "source_case_number": 88,
+      "pilot_group": "basic_pipeline",
+      "status": "source_collected",
+      "file_count": 4
+    }
+  ]
+}
