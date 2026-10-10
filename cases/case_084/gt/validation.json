@@ -35,9 +35,9 @@
   "input_sha256": "bae1b90d8a526ad678d93b1dea11db8d1bf32b320628f26ab65c9259cbc83334",
   "native_source_sha256": "fdd8806bf160228b295a649ad10d953bfce16c2cfb420fc7c312a5a53d34b309",
   "native_export_sha256": "3344431d07ea86885a82d65138f308c4143031bbb127149123e9ee829ab93af8",
-  "native_features_sha256": "c11e62b3262f60dd55573a8b963eb7506cd8d95a8c773f0ef7f98316d4e118a8",
+  "native_features_sha256": "8b304c052e0863706ca329136d4160e934fc5878f05122c6e6cd9775f2da460a",
   "reconstruction_sha256": "34f3508b3ea26b5a9f3c01dfb141ee9883b54d7f6e0e8e32488b400ca2779990",
-  "gt_sha256": "bfb09ad9fff4fa5d30f716b260444ddfa505b25ed7277162d5252a72ab4b587d",
+  "gt_sha256": "38fac80df0b933de5b6b472b8975e349808e1fe7a084acec0319fc0b993fd4ac",
   "controlled_reference_score": 100.0,
   "calibrated": false,
   "drawing_variants": {

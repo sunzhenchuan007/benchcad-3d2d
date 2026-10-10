@@ -14,6 +14,13 @@ from test_framework import ROOT, workspace_temp
 
 
 class SelectedCaseContractTests(unittest.TestCase):
+    def test_hashed_text_artifacts_have_portable_lf_bytes(self):
+        metadata=read_json(CASE/"case.json")
+        for artifact in metadata["artifacts"]:
+            if Path(artifact["path"]).suffix in (".json",".py",".md"):
+                with self.subTest(path=artifact["path"]):
+                    self.assertNotIn(b"\r\n",(CASE/artifact["path"]).read_bytes())
+
     def test_selected_case_evidence_links_and_six_native_dimensions(self):
         metadata=read_json(CASE/"case.json")
         self.assertEqual(len(verify_selected_case(CASE,metadata)),8)

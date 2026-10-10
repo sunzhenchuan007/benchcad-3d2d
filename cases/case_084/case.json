@@ -49,8 +49,8 @@
     },
     {
       "path": "gt/gt.json",
-      "bytes": 34663,
-      "sha256": "bfb09ad9fff4fa5d30f716b260444ddfa505b25ed7277162d5252a72ab4b587d"
+      "bytes": 32900,
+      "sha256": "38fac80df0b933de5b6b472b8975e349808e1fe7a084acec0319fc0b993fd4ac"
     },
     {
       "path": "gt/reconstruction.py",
@@ -59,8 +59,8 @@
     },
     {
       "path": "gt/native_features.json",
-      "bytes": 4957,
-      "sha256": "c11e62b3262f60dd55573a8b963eb7506cd8d95a8c773f0ef7f98316d4e118a8"
+      "bytes": 4733,
+      "sha256": "8b304c052e0863706ca329136d4160e934fc5878f05122c6e6cd9775f2da460a"
     },
     {
       "path": "gt/native_export.step",
@@ -69,8 +69,8 @@
     },
     {
       "path": "gt/validation.json",
-      "bytes": 4675,
-      "sha256": "d097bbe25fd889e78af6304b52af6a9c094cfef62e3ad2c25cc36f0415c1193b"
+      "bytes": 4476,
+      "sha256": "c9b59caae838c1ddddc17398a676695f4bf3be0ee2311ea0fa4e57967556f3b8"
     },
     {
       "path": "README.md",

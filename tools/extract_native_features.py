@@ -54,7 +54,7 @@ def extract(source, out):
         result["export"]["sha256"] = hashlib.sha256(export.read_bytes()).hexdigest()
         if hashlib.sha256(source.read_bytes()).hexdigest() != before:
             raise RuntimeError("Native source changed during read-only extraction")
-        (out / "native_features.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        (out / "native_features.json").write_bytes((json.dumps(result, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
         return result
     finally:
         sw.CloseDoc(read(doc, "GetTitle"))

@@ -23,7 +23,8 @@ PARAMETER_SOURCES = {
 
 def write(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # Artifact hashes must match Git's LF checkout on every platform.
+    path.write_bytes((json.dumps(data, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
 
 
 def sha(path):
