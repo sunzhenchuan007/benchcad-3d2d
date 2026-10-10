@@ -1,0 +1,199 @@
+{
+  "schema_version": "benchcad-3d2d-case-validation/1",
+  "case_id": "case_084",
+  "units": "mm",
+  "valid": true,
+  "solid_count": 1,
+  "face_count": 26,
+  "all_surfaces_planar": true,
+  "source_volume_mm3": 495000.00000000006,
+  "analytic_volume_mm3": 495000.0,
+  "parameters_mm": {
+    "base.width_x": 90.0,
+    "base.width_z": 90.0,
+    "neck.width_x": 30.0,
+    "neck.width_z": 30.0,
+    "lower.height": 60.0,
+    "upper.height": 30.0
+  },
+  "comparison_tolerance_mm3": 1e-05,
+  "boolean_comparisons": [
+    {
+      "candidate": "native_export",
+      "source_minus_candidate_mm3": 0.0,
+      "candidate_minus_source_mm3": 0.0,
+      "passed": true
+    },
+    {
+      "candidate": "cq_reconstruction",
+      "source_minus_candidate_mm3": 0.0,
+      "candidate_minus_source_mm3": 0.0,
+      "passed": true
+    }
+  ],
+  "scope": "Geometry and audited final parameterization; not native history equivalence or production benchmark calibration",
+  "input_sha256": "bae1b90d8a526ad678d93b1dea11db8d1bf32b320628f26ab65c9259cbc83334",
+  "native_source_sha256": "fdd8806bf160228b295a649ad10d953bfce16c2cfb420fc7c312a5a53d34b309",
+  "native_export_sha256": "3344431d07ea86885a82d65138f308c4143031bbb127149123e9ee829ab93af8",
+  "native_features_sha256": "c11e62b3262f60dd55573a8b963eb7506cd8d95a8c773f0ef7f98316d4e118a8",
+  "reconstruction_sha256": "34f3508b3ea26b5a9f3c01dfb141ee9883b54d7f6e0e8e32488b400ca2779990",
+  "gt_sha256": "bfb09ad9fff4fa5d30f716b260444ddfa505b25ed7277162d5252a72ab4b587d",
+  "controlled_reference_score": 100.0,
+  "calibrated": false,
+  "drawing_variants": {
+    "good": {
+      "score": 100.0,
+      "complete": true,
+      "dependency_count": 0,
+      "missing": [],
+      "view_issues": [
+        [],
+        [],
+        []
+      ]
+    },
+    "equivalent_total_height": {
+      "score": 100.0,
+      "complete": true,
+      "dependency_count": 0,
+      "missing": [],
+      "view_issues": [
+        [],
+        [],
+        []
+      ]
+    },
+    "redundant_dimension": {
+      "score": 99.2857,
+      "complete": true,
+      "dependency_count": 1,
+      "missing": [],
+      "view_issues": [
+        [],
+        [],
+        []
+      ]
+    },
+    "conflicting_dimension": {
+      "score": 87.2222,
+      "complete": false,
+      "dependency_count": 1,
+      "missing": [],
+      "view_issues": [
+        [],
+        [],
+        []
+      ]
+    },
+    "missing_dimension": {
+      "score": 91.1111,
+      "complete": false,
+      "dependency_count": 0,
+      "missing": [
+        "neck.width_z"
+      ],
+      "view_issues": [
+        [],
+        [],
+        []
+      ]
+    },
+    "conflict_and_missing": {
+      "score": 83.3333,
+      "complete": false,
+      "dependency_count": 1,
+      "missing": [
+        "neck.width_z"
+      ],
+      "view_issues": [
+        [],
+        [],
+        []
+      ]
+    },
+    "redundant_and_missing": {
+      "score": 91.1111,
+      "complete": false,
+      "dependency_count": 1,
+      "missing": [
+        "neck.width_z"
+      ],
+      "view_issues": [
+        [],
+        [],
+        []
+      ]
+    },
+    "json_only_dimension": {
+      "score": 91.1111,
+      "complete": false,
+      "dependency_count": 0,
+      "missing": [
+        "neck.width_z"
+      ],
+      "view_issues": [
+        [],
+        [],
+        []
+      ]
+    },
+    "missing_structure_note": {
+      "score": 83.3333,
+      "complete": false,
+      "dependency_count": 0,
+      "missing": [],
+      "view_issues": [
+        [],
+        [],
+        []
+      ]
+    },
+    "missing_view": {
+      "score": 71.1111,
+      "complete": false,
+      "dependency_count": 0,
+      "missing": [
+        "base.width_z"
+      ],
+      "view_issues": [
+        [
+          "wrong_geometry_or_view_declaration"
+        ],
+        [
+          "missing_view"
+        ],
+        [
+          "wrong_geometry_or_view_declaration"
+        ]
+      ]
+    },
+    "wrong_profile": {
+      "score": 88.3333,
+      "complete": false,
+      "dependency_count": 0,
+      "missing": [],
+      "view_issues": [
+        [],
+        [],
+        [
+          "wrong_geometry_or_view_declaration"
+        ]
+      ]
+    },
+    "overlapping_labels": {
+      "score": 93.6667,
+      "complete": false,
+      "dependency_count": 0,
+      "missing": [],
+      "view_issues": [
+        [],
+        [],
+        [
+          "text_text_collision"
+        ]
+      ]
+    }
+  },
+  "native_open_warnings": 0,
+  "review_status": "geometric and developer review; expert calibration pending"
+}

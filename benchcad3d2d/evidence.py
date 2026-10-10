@@ -160,7 +160,7 @@ def collect_dxf(gt, prediction, drawing, rules):
                 require(abs(number(annotation["value"], "declared dimension")-observed) <= tol, "JSON and drawn measurement disagree")
                 equations.append({"terms": binding["terms"], "value": observed,
                                   "annotation_id": annotation["id"]})
-            elif entity.dxftype() == "TEXT" and binding["type"] in ("symmetry", "alignment", "termination"):
+            elif entity.dxftype() == "TEXT" and binding["type"] in ("symmetry", "alignment", "termination", "structure_note"):
                 require(not entity.dxf.get("invisible",0) and not doc.layers.get(entity.dxf.layer).is_off()
                         and not doc.layers.get(entity.dxf.layer).is_frozen(), "Annotation text is hidden")
                 require(entity.dxf.text == binding["text"], "Symbol/text does not match controlled vocabulary")
@@ -168,7 +168,7 @@ def collect_dxf(gt, prediction, drawing, rules):
                 block = blocks[block_name]
                 for segment in binding.get("required_centerlines", []):
                     require(any(e.dxf.layer == "CENTER" and segment_matches(e, segment, tol) for e in block), "Associated centerline missing")
-                if binding["type"] == "termination":
+                if binding["type"] in ("termination", "structure_note"):
                     require(annotation.get("value") == binding["value"], "Termination declaration mismatch")
                     structures.extend({**condition, "id": annotation["id"]} for condition in binding["structures"])
                     equations.extend({**equation, "annotation_id": annotation["id"]}

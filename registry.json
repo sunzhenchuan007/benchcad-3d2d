@@ -1,5 +1,5 @@
 {
-  "schema_version": "benchcad-3d2d-registry/1",
+  "schema_version": "benchcad-3d2d-registry/2",
   "cases": [
     {
       "case_id": "case_001",
@@ -30,7 +30,7 @@
       "path": "cases/case_084",
       "source_case_number": 84,
       "pilot_group": "basic_pipeline",
-      "status": "source_collected",
+      "status": "development_ready",
       "file_count": 3
     },
     {

@@ -1,0 +1,224 @@
+{
+  "source_filename": "放样多凸台2023.SLDPRT",
+  "source_sha256": "fdd8806bf160228b295a649ad10d953bfce16c2cfb420fc7c312a5a53d34b309",
+  "solidworks_revision": "31.5.0",
+  "units": "SI meters (SystemValue)",
+  "open_errors": 0,
+  "open_warnings": 0,
+  "features": [
+    {
+      "name": "收藏",
+      "type": "FavoriteFolder",
+      "dimensions": []
+    },
+    {
+      "name": "历史记录",
+      "type": "HistoryFolder",
+      "dimensions": []
+    },
+    {
+      "name": "选择集",
+      "type": "SelectionSetFolder",
+      "dimensions": []
+    },
+    {
+      "name": "传感器",
+      "type": "SensorFolder",
+      "dimensions": []
+    },
+    {
+      "name": "Design Binder",
+      "type": "DocsFolder",
+      "dimensions": []
+    },
+    {
+      "name": "注解",
+      "type": "DetailCabinet",
+      "dimensions": []
+    },
+    {
+      "name": "标注",
+      "type": "InkMarkupFolder",
+      "dimensions": []
+    },
+    {
+      "name": "光源与相机",
+      "type": "EnvFolder",
+      "dimensions": []
+    },
+    {
+      "name": "实体",
+      "type": "SolidBodyFolder",
+      "dimensions": []
+    },
+    {
+      "name": "曲面实体",
+      "type": "SurfaceBodyFolder",
+      "dimensions": []
+    },
+    {
+      "name": "备注",
+      "type": "CommentsFolder",
+      "dimensions": []
+    },
+    {
+      "name": "方程式",
+      "type": "EqnFolder",
+      "dimensions": []
+    },
+    {
+      "name": "Material <not specified>",
+      "type": "MaterialFolder",
+      "dimensions": []
+    },
+    {
+      "name": "前视基准面",
+      "type": "RefPlane",
+      "dimensions": []
+    },
+    {
+      "name": "上视基准面",
+      "type": "RefPlane",
+      "dimensions": []
+    },
+    {
+      "name": "右视基准面",
+      "type": "RefPlane",
+      "dimensions": []
+    },
+    {
+      "name": "原点",
+      "type": "OriginProfileFeature",
+      "dimensions": []
+    },
+    {
+      "name": "Tables",
+      "type": "ConfigTableFolder",
+      "dimensions": []
+    },
+    {
+      "name": "草图1",
+      "type": "ProfileFeature",
+      "dimensions": [
+        {
+          "name": "D1@草图1@放样多凸台2023.Part",
+          "system_value": 0.09
+        },
+        {
+          "name": "D2@草图1@放样多凸台2023.Part",
+          "system_value": 0.09
+        }
+      ]
+    },
+    {
+      "name": "凸台-拉伸1",
+      "type": "Extrusion",
+      "dimensions": [
+        {
+          "name": "D1@凸台-拉伸1@放样多凸台2023.Part",
+          "system_value": 0.06
+        },
+        {
+          "name": "D1@草图1@放样多凸台2023.Part",
+          "system_value": 0.09
+        },
+        {
+          "name": "D2@草图1@放样多凸台2023.Part",
+          "system_value": 0.09
+        }
+      ]
+    },
+    {
+      "name": "基准面1",
+      "type": "RefPlane",
+      "dimensions": [
+        {
+          "name": "D1@基准面1@放样多凸台2023.Part",
+          "system_value": 0.03
+        }
+      ]
+    },
+    {
+      "name": "草图2",
+      "type": "ProfileFeature",
+      "dimensions": [
+        {
+          "name": "D1@基准面1@放样多凸台2023.Part",
+          "system_value": 0.03
+        },
+        {
+          "name": "D1@草图2@放样多凸台2023.Part",
+          "system_value": 0.03
+        },
+        {
+          "name": "D2@草图2@放样多凸台2023.Part",
+          "system_value": 0.03
+        }
+      ]
+    },
+    {
+      "name": "放样1",
+      "type": "Blend",
+      "dimensions": [
+        {
+          "name": "D1@基准面1@放样多凸台2023.Part",
+          "system_value": 0.03
+        },
+        {
+          "name": "D1@草图2@放样多凸台2023.Part",
+          "system_value": 0.03
+        },
+        {
+          "name": "D2@草图2@放样多凸台2023.Part",
+          "system_value": 0.03
+        }
+      ]
+    },
+    {
+      "name": "草图3",
+      "type": "ProfileFeature",
+      "dimensions": []
+    },
+    {
+      "name": "切除-拉伸1",
+      "type": "ICE",
+      "dimensions": [
+        {
+          "name": "D1@切除-拉伸1@放样多凸台2023.Part",
+          "system_value": 0.03
+        }
+      ]
+    },
+    {
+      "name": "草图4",
+      "type": "ProfileFeature",
+      "dimensions": []
+    },
+    {
+      "name": "切除-放样1",
+      "type": "BlendCut",
+      "dimensions": []
+    },
+    {
+      "name": "切除-放样2",
+      "type": "BlendCut",
+      "dimensions": []
+    },
+    {
+      "name": "切除-放样3",
+      "type": "BlendCut",
+      "dimensions": []
+    },
+    {
+      "name": "切除-放样4",
+      "type": "BlendCut",
+      "dimensions": []
+    }
+  ],
+  "export": {
+    "saved": true,
+    "errors": 0,
+    "warnings": 0,
+    "sha256": "3344431d07ea86885a82d65138f308c4143031bbb127149123e9ee829ab93af8"
+  }
+}

@@ -4,13 +4,15 @@
 
 模型输入 STEP 实体，识别特征及其参数关系，并生成能够完整表达零件几何的二维工程图。GT 从 SLDPRT 特征树或等价的 CadQuery 程序提取，依据独立参数与约束构建，不依赖配套工程图。
 
-This repository contains the task proposal and six pilot cases from T1: **01, 13, 15, 84, 86, and 88**. Only STEP and SLDPRT source assets are included. Source collection and integrity checks are complete; native CAD pairing and feature extraction remain to be completed. A development verifier now runs on synthetic relation examples and a controlled CQ/STEP/DXF case; it does not make the six source cases ready for scoring.
+This repository contains the task proposal and six pilot cases from T1: **01, 13, 15, 84, 86, and 88**. Archived source assets remain STEP and SLDPRT. **[Case 84](cases/case_084/README.md) is the first development-ready native case**, with verified native/STEP pairing, an audited six-parameter GT, an independent CQ reconstruction and controlled three-view validation. The other five cases remain source-collected only. Development-ready cases are not calibrated production benchmark cases.
 
 ## Repository layout
 
 ```text
 cases/<case_id>/
 ├── case.json          # source records, hashes, candidate files, readiness
+├── input/model.step   # selected development cases only; model-visible
+├── gt/                # selected cases: private GT construction and validation
 └── sources/           # STEP and SLDPRT; original version folders preserved
 docs/
 ├── DESIGN.md          # full task and verifier proposal in Chinese
@@ -82,5 +84,7 @@ These weights are a proposal, not calibrated benchmark results. Feature recognit
 | Complex structure | 86, 15 | Larger feature structures and section-view verification |
 
 The groups define the first experiment, not a measured difficulty ranking. Multiple source versions remain distinct until their geometry and units have been checked.
+
+Validate the selected native case in an existing CadQuery/ezdxf environment with `python tools/verify_case84_geometry.py`. The simple [plate-hole example](examples/plate_holes/README.md) is stored separately for explanation and does not count as a benchmark case.
 
 The repository organization follows [BenchCAD 2 main](https://github.com/BenchCAD-org/benchcad-2/tree/5d47436e375ba635979ca441f3cc89403da311a2): a concise entry point, explicit case contracts, provenance records, contribution and review guidance, and focused CI. This is a separate project; the BenchCAD 2 family validator is not a 3D2D verifier.

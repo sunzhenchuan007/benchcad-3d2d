@@ -1,6 +1,6 @@
 # 可运行框架 development-v0.2
 
-本地框架基于仓库原有 required_variables、variables 与关系链合同建立。源案例 01/13/15/84/86/88 仍是 source_collected，未被伪装成已经配对或完成 GT 的评分案例。
+本地框架基于仓库原有 required_variables、variables 与关系链合同建立。Case 84 现提供经原生配对与独立重建核验的开发 GT；其他五个源案例仍为 source_collected。平板孔合成示例位于 examples，单独用于解释评分行为。
 
 ## 文件布局
 

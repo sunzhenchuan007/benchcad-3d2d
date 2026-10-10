@@ -11,6 +11,8 @@
 - A v0.1 executable relation/matrix solver with per-variable proofs, underconstraint and conflict reporting.
 - A controlled vector-DXF adapter that checks actual dimensions, anchors, symmetry/alignment notes, full-section contours, cutting lines, arrows and labels.
 - A synthetic CQ/STEP/DXF generator and perturbation tests. These development cases are separate from the six source cases.
+- Case 84: native/STEP pairing, raw native dimensions, audited six-parameter GT, independent planar CQ reconstruction and 12 controlled three-view drawing variants.
+- A standalone plate-hole explanatory example under `examples/plate_holes/`, excluded from the registry.
 - Versioned configurable rules and JSON interfaces; [framework guide](FRAMEWORK.md) and [rule book](RULES_V0_2.md).
 
 | Case | Files | Source state | Geometry pairing | GT extraction |
@@ -18,7 +20,7 @@
 | 01 | 2 | Collected | Pending | Pending |
 | 13 | 3 | Collected | Pending | Pending |
 | 15 | 2 | Collected | Pending | Pending |
-| 84 | 3 | Collected | Pending | Pending |
+| 84 | 3 | Development ready | Verified against native export | Audited six-parameter GT |
 | 86 | 2 | Collected | Pending | Pending |
 | 88 | 4 | Collected | Pending | Pending |
 
@@ -31,4 +33,4 @@
 5. Implement dimensional constraints and geometric view verification.
 6. Run the controlled perturbation tests in the design proposal, then calibrate weights on additional cases.
 
-The source check in CI validates the package, not CAD geometry or benchmark metrics. The framework CI runs core and controlled-DXF regression checks; its CAD generator has been tested locally using an existing CAD environment. Remote CI has not yet run for the local framework changes. No real model runs, native GT extraction for the six cases, general drawing verifier, calibrated metrics or leaderboard results are included.
+The source check in CI validates the package, not CAD geometry or benchmark metrics. A dedicated Case 84 CAD job recomputes native-export/input/reconstruction differences and GT, and checks its controlled drawing fixtures. Local checks and remote CI status must be reported separately. Raw native extraction and final feature normalization have been audited for Case 84; general native semantic extraction and the other five cases remain pending. No real model runs, general drawing verifier, calibrated metrics or leaderboard results are included.
