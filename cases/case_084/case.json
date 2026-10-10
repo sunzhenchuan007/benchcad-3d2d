@@ -1,14 +1,14 @@
 {
-  "schema_version": "benchcad-3d2d-source/1",
+  "schema_version": "benchcad-3d2d-source/2",
   "case_id": "case_084",
   "source_case_number": 84,
   "title": "Lofted bosses",
   "pilot_group": "basic_pipeline",
-  "status": "source_collected",
-  "pairing_verified": false,
-  "gt_extracted": false,
-  "input_step": null,
-  "gt_source": null,
+  "status": "development_ready",
+  "pairing_verified": true,
+  "gt_extracted": true,
+  "input_step": "input/model.step",
+  "gt_source": "sources/放样多凸台2023.SLDPRT",
   "source_folder_url": "https://drive.google.com/drive/folders/1Adt6hHW2HbrHyMTzziKkstDNMP4C_DEM",
   "files": [
     {
@@ -37,6 +37,50 @@
       "drive_id": "1IzCfxyAX_UD49R050UEW_VcqS8DVXbjV",
       "source_url": "https://drive.google.com/file/d/1IzCfxyAX_UD49R050UEW_VcqS8DVXbjV/view?usp=drivesdk",
       "original_path": "cases/84_放样凸台 verified/放样多凸台.SLDPRT"
+    }
+  ],
+  "gt_file": "gt/gt.json",
+  "validation_file": "gt/validation.json",
+  "artifacts": [
+    {
+      "path": "input/model.step",
+      "bytes": 46627,
+      "sha256": "bae1b90d8a526ad678d93b1dea11db8d1bf32b320628f26ab65c9259cbc83334"
+    },
+    {
+      "path": "gt/gt.json",
+      "bytes": 32900,
+      "sha256": "38fac80df0b933de5b6b472b8975e349808e1fe7a084acec0319fc0b993fd4ac"
+    },
+    {
+      "path": "gt/reconstruction.py",
+      "bytes": 2537,
+      "sha256": "34f3508b3ea26b5a9f3c01dfb141ee9883b54d7f6e0e8e32488b400ca2779990"
+    },
+    {
+      "path": "gt/native_features.json",
+      "bytes": 4733,
+      "sha256": "8b304c052e0863706ca329136d4160e934fc5878f05122c6e6cd9775f2da460a"
+    },
+    {
+      "path": "gt/native_export.step",
+      "bytes": 46661,
+      "sha256": "3344431d07ea86885a82d65138f308c4143031bbb127149123e9ee829ab93af8"
+    },
+    {
+      "path": "gt/validation.json",
+      "bytes": 4476,
+      "sha256": "c9b59caae838c1ddddc17398a676695f4bf3be0ee2311ea0fa4e57967556f3b8"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3588,
+      "sha256": "765f4c2a439ce2a2b74179b54a1bf251ad9df6c40c123b1ec48c57e79bdb549f"
+    },
+    {
+      "path": "preview.png",
+      "bytes": 105779,
+      "sha256": "59f815ecd03b2fa6bd0f73feeb65804d10f41c73a280ce6827650c9856f8a54b"
     }
   ]
 }

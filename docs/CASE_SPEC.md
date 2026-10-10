@@ -13,6 +13,16 @@ Each `cases/case_NNN/` directory contains `case.json` and a `sources/` subtree. 
 
 `registry.json` indexes exactly the case directories present in this repository. `tools/verify_sources.py` checks this source contract and file integrity only.
 
+## Selected development cases (source/2, registry/2)
+
+Registry version 2 accepts unchanged source/1 collected entries alongside selected source/2 entries. Case 84 is the first selected entry, with `status: development_ready`, `pairing_verified: true`, and `gt_extracted: true`. This means an audited native-derived parameterization and the controlled development verifier can be rerun; it does not mean production calibration, arbitrary drawing support or expert acceptance.
+
+The selected entry sets `input_step: input/model.step`, `gt_source` to an existing archived SLDPRT, `gt_file: gt/gt.json`, and `validation_file: gt/validation.json`. Its artifact manifest records portable paths, byte counts and SHA-256 for exactly: the selected STEP, GT, CQ reconstruction, raw native extraction report, native comparison STEP, validation report, README and 3D preview. Archived sources remain STEP/SLDPRT only; CQ construction belongs to private `gt/`, and paired reference drawings are not added to cases.
+
+The integrity checker validates every artifact and its evidence links, rejects unlisted files (apart from Python bytecode caches), and checks the input matches an original STEP. It does **not** rerun geometry or infer semantics from a readiness flag. `tools/verify_case84_geometry.py` independently compares the native-exported and parameter-reconstructed solids against the selected input, regenerates GT, and exercises actual controlled DXF fixtures. Native extraction can be repeated on a licensed SOLIDWORKS/pywin32 host using `tools/extract_native_features.py`; ordinary CI uses the captured native evidence and recomputes the geometry comparisons.
+
+GT schemas remain development version 0.1; the source lifecycle contract is independently versioned. Other five source cases remain unselected and are not ready for scoring. The plate-hole synthetic demonstration lives under `examples/plate_holes/`, outside the case registry.
+
 ## Pair selection and GT extraction
 
 Before declaring a case ready, compare the selected STEP with the final geometry in the selected SLDPRT or independently verified CQ program. Check units, coordinate frame, solids, dimensions, and shape; verify that the native file contains useful modeling features rather than only an imported body.

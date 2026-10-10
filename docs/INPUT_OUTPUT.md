@@ -15,7 +15,7 @@ cases/<case_id>/
     └── ...                   原始 SLDPRT 与 STEP 版本及来源层级
 ```
 
-这是案例完成配对与 GT 提取后的目标结构。当前六例仍处于 `source_collected`：只有 `case.json` 和 `sources/`，尚未生成 `input/` 与 `gt/`。不得用空 JSON 或臆造参数把它们伪装成可评分案例。正式生成时需同步升级源文件校验器与案例清单版本。
+Case 84 已按 source/2 合同生成 `input/`、`gt/` 和验证证据，状态为 development_ready；其余五例仍处于 `source_collected`，只有 `case.json` 和 `sources/`。不得用空 JSON 或臆造参数把它们伪装成可评分案例。源文件校验器和 registry/2 已同步支持已选择的开发案例。
 
 `input/` 是模型可见边界；`gt/`、`sources/` 和带来源信息的内部清单均不挂载给模型。SLDPRT 特征树或等价 CQ 建模程序用于后台生成 GT，无需配套工程图。若采用 CQ 来源，应同时扩展当前只接收 STEP／SLDPRT 的源文件合同。
 

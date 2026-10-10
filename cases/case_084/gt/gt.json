@@ -1,0 +1,1763 @@
+{
+  "schema_version": "benchcad-3d2d-gt/0.1",
+  "case_id": "case_084",
+  "synthetic": false,
+  "units": "mm",
+  "scope": "Native-source development case: six linear parameters, centered planar station topology, controlled three-view DXF only",
+  "geometry": {
+    "input_sha256": "bae1b90d8a526ad678d93b1dea11db8d1bf32b320628f26ab65c9259cbc83334",
+    "anchors": {
+      "origin.x": 0,
+      "origin.y": 0,
+      "origin.z": 0
+    },
+    "frame": "Source frame: Y=0 base, +Y upward; X/Z centered on base"
+  },
+  "variables": {
+    "base.width_x": {
+      "type": "length",
+      "axis": "x",
+      "value": 90.0
+    },
+    "base.width_z": {
+      "type": "length",
+      "axis": "z",
+      "value": 90.0
+    },
+    "neck.width_x": {
+      "type": "length",
+      "axis": "x",
+      "value": 30.0
+    },
+    "neck.width_z": {
+      "type": "length",
+      "axis": "z",
+      "value": 30.0
+    },
+    "lower.height": {
+      "type": "length",
+      "axis": "y",
+      "value": 60.0
+    },
+    "upper.height": {
+      "type": "length",
+      "axis": "y",
+      "value": 30.0
+    }
+  },
+  "required_variables": [
+    "base.width_x",
+    "base.width_z",
+    "neck.width_x",
+    "neck.width_z",
+    "lower.height",
+    "upper.height"
+  ],
+  "entities": [
+    {
+      "id": "lower",
+      "type": "faceted_rectangle_to_cross",
+      "center": [
+        0,
+        30.0,
+        0
+      ],
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "parameters": {
+        "base.width_x": 90.0,
+        "base.width_z": 90.0,
+        "neck.width_x": 30.0,
+        "neck.width_z": 30.0,
+        "lower.height": 60.0
+      },
+      "geometry_refs": [
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              45.0,
+              -0.0,
+              -45.0
+            ],
+            [
+              45.0,
+              -0.0,
+              45.0
+            ],
+            [
+              45.0,
+              60.0,
+              -15.0
+            ],
+            [
+              45.0,
+              60.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "afc987140e584ae9c1d87ac19facd21592c9081c47dab8d8a3057f1021d399cf"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              -0.0,
+              -45.0
+            ],
+            [
+              -15.0,
+              60.0,
+              -45.0
+            ],
+            [
+              15.0,
+              60.0,
+              -45.0
+            ],
+            [
+              45.0,
+              -0.0,
+              -45.0
+            ]
+          ],
+          "fingerprint": "95323c1bb15a3f2724488e5c5590abe8d3c91d83bbc0da23e861edeee1061a4e"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              -0.0,
+              -45.0
+            ],
+            [
+              -45.0,
+              0.0,
+              45.0
+            ],
+            [
+              -45.0,
+              60.0,
+              -15.0
+            ],
+            [
+              -45.0,
+              60.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "c4313ed6d0c1f7f7bf912e192eb3a547d81d0fb7c8b9d09eb5f4ae69f7745525"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              0.0,
+              45.0
+            ],
+            [
+              -15.0,
+              60.0,
+              45.0
+            ],
+            [
+              15.0,
+              60.0,
+              45.0
+            ],
+            [
+              45.0,
+              -0.0,
+              45.0
+            ]
+          ],
+          "fingerprint": "28d29f4678f66dc08d36d219d77c3c4518a58bf9afbfc24f8c60ac9dab4ba05c"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              -0.0,
+              -45.0
+            ],
+            [
+              -45.0,
+              0.0,
+              45.0
+            ],
+            [
+              45.0,
+              -0.0,
+              -45.0
+            ],
+            [
+              45.0,
+              -0.0,
+              45.0
+            ]
+          ],
+          "fingerprint": "6b5918f7b395a07767190c0a845ed5dc148f0b3171043883223f373aebc2d56d"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              0.0,
+              45.0
+            ],
+            [
+              -45.0,
+              60.0,
+              15.0
+            ],
+            [
+              -15.0,
+              60.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "f0750271bb51c4d4d243297dd864c84e7e67e10ab1c1063e16578a184033bf81"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              0.0,
+              45.0
+            ],
+            [
+              -15.0,
+              60.0,
+              15.0
+            ],
+            [
+              -15.0,
+              60.0,
+              45.0
+            ]
+          ],
+          "fingerprint": "dec1801cf7a66b51825db7ada43e375f55ae236bb75df71c9693769e03933617"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              15.0,
+              60.0,
+              15.0
+            ],
+            [
+              15.0,
+              60.0,
+              45.0
+            ],
+            [
+              45.0,
+              -0.0,
+              45.0
+            ]
+          ],
+          "fingerprint": "cec6f29a716a8c6b4452f624c31dd4cda507d35aadd6a05123eb92fc59d6a17d"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              15.0,
+              60.0,
+              15.0
+            ],
+            [
+              45.0,
+              -0.0,
+              45.0
+            ],
+            [
+              45.0,
+              60.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "8cde01b67b7c854743a89b83606f15de169cbb61ab5ddaace016371a17d26a8a"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              15.0,
+              60.0,
+              -45.0
+            ],
+            [
+              15.0,
+              60.0,
+              -15.0
+            ],
+            [
+              45.0,
+              -0.0,
+              -45.0
+            ]
+          ],
+          "fingerprint": "105f3a1cab204861026fbadb70749d3bbaea9a5d3a237e37ceae6a5bb48ea53c"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              15.0,
+              60.0,
+              -15.0
+            ],
+            [
+              45.0,
+              -0.0,
+              -45.0
+            ],
+            [
+              45.0,
+              60.0,
+              -15.0
+            ]
+          ],
+          "fingerprint": "a7ad3d123ded9cf9dde5d076b03567a2366597d02fe1c55c3ab60bb795a1c05f"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              -0.0,
+              -45.0
+            ],
+            [
+              -45.0,
+              60.0,
+              -15.0
+            ],
+            [
+              -15.0,
+              60.0,
+              -15.0
+            ]
+          ],
+          "fingerprint": "2fdc67345fb6465825cb1ff2a596b66f8a451dc609947b3416a385e5d809dfd7"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              -0.0,
+              -45.0
+            ],
+            [
+              -15.0,
+              60.0,
+              -45.0
+            ],
+            [
+              -15.0,
+              60.0,
+              -15.0
+            ]
+          ],
+          "fingerprint": "87570245def94911397634febdb47cd166fe246d79f12a1b4f1938c25031525f"
+        }
+      ]
+    },
+    {
+      "id": "upper",
+      "type": "faceted_cross_to_rectangle",
+      "center": [
+        0,
+        75.0,
+        0
+      ],
+      "axis": [
+        0,
+        1,
+        0
+      ],
+      "parameters": {
+        "base.width_x": 90.0,
+        "base.width_z": 90.0,
+        "neck.width_x": 30.0,
+        "neck.width_z": 30.0,
+        "upper.height": 30.0
+      },
+      "geometry_refs": [
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -15.0,
+              90.0,
+              -15.0
+            ],
+            [
+              -15.0,
+              90.0,
+              15.0
+            ],
+            [
+              15.0,
+              90.0,
+              -15.0
+            ],
+            [
+              15.0,
+              90.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "72bf2c3bf5bd8de179950dcd4cf1ecd36333649f394b8f63ac455d2fffdc7cca"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              60.0,
+              -15.0
+            ],
+            [
+              -45.0,
+              60.0,
+              15.0
+            ],
+            [
+              -15.0,
+              90.0,
+              -15.0
+            ],
+            [
+              -15.0,
+              90.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "25fee2f2fb8e8d4357f219de3eb7e9d5a593797af477f41dcb91713673fde4e5"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -15.0,
+              60.0,
+              45.0
+            ],
+            [
+              -15.0,
+              90.0,
+              15.0
+            ],
+            [
+              15.0,
+              60.0,
+              45.0
+            ],
+            [
+              15.0,
+              90.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "86c64d6f59944777101174c27ca43691c60e2ea247cd91ad3fc01a61c48ce7fc"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -15.0,
+              60.0,
+              -45.0
+            ],
+            [
+              -15.0,
+              90.0,
+              -15.0
+            ],
+            [
+              15.0,
+              60.0,
+              -45.0
+            ],
+            [
+              15.0,
+              90.0,
+              -15.0
+            ]
+          ],
+          "fingerprint": "3027a3eff8bea0f93a64b2dfc632c0941eb6470900e79d6fdbb7c08849d5190c"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              15.0,
+              90.0,
+              -15.0
+            ],
+            [
+              15.0,
+              90.0,
+              15.0
+            ],
+            [
+              45.0,
+              60.0,
+              -15.0
+            ],
+            [
+              45.0,
+              60.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "af09dadc863ab2ec4c1cce97fb6d89ff92ae26a8bc559d78c2b2361803016ef3"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              15.0,
+              60.0,
+              -45.0
+            ],
+            [
+              15.0,
+              60.0,
+              -15.0
+            ],
+            [
+              15.0,
+              90.0,
+              -15.0
+            ]
+          ],
+          "fingerprint": "951ef7768ac022c4d223817d79b5bf54dc6c32d48c1d652c9bf5365b227bb14c"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              15.0,
+              60.0,
+              -15.0
+            ],
+            [
+              15.0,
+              90.0,
+              -15.0
+            ],
+            [
+              45.0,
+              60.0,
+              -15.0
+            ]
+          ],
+          "fingerprint": "9c0a9bfe8b801e64d3f7aba3e71da873fb20855eddebe4a75d7b55c25f98e16a"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              15.0,
+              60.0,
+              15.0
+            ],
+            [
+              15.0,
+              60.0,
+              45.0
+            ],
+            [
+              15.0,
+              90.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "f6829a7ecf8b606311f803637e1f90c68a4bdac26e7c75c596d37de34c9dbe71"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              15.0,
+              60.0,
+              15.0
+            ],
+            [
+              15.0,
+              90.0,
+              15.0
+            ],
+            [
+              45.0,
+              60.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "f239d5fd6e1977628672d184dd7fd3f3ac0a41a68675af7f4419dd5134ef6083"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -15.0,
+              60.0,
+              -45.0
+            ],
+            [
+              -15.0,
+              60.0,
+              -15.0
+            ],
+            [
+              -15.0,
+              90.0,
+              -15.0
+            ]
+          ],
+          "fingerprint": "d8e2c45f2b0e520d906b660126596689b1ae852cc197fe781908d0757407ae04"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              60.0,
+              -15.0
+            ],
+            [
+              -15.0,
+              60.0,
+              -15.0
+            ],
+            [
+              -15.0,
+              90.0,
+              -15.0
+            ]
+          ],
+          "fingerprint": "b04be24da9623fc97b123069c4b826133d8d7b2788c028768a5db5b3ac123013"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -15.0,
+              60.0,
+              15.0
+            ],
+            [
+              -15.0,
+              60.0,
+              45.0
+            ],
+            [
+              -15.0,
+              90.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "2234a23468d5799b829b6ca250d61a3c0e3a95d2cf874f9eaac943f7ab2c0f6c"
+        },
+        {
+          "surface": "PLANE",
+          "vertices_mm": [
+            [
+              -45.0,
+              60.0,
+              15.0
+            ],
+            [
+              -15.0,
+              60.0,
+              15.0
+            ],
+            [
+              -15.0,
+              90.0,
+              15.0
+            ]
+          ],
+          "fingerprint": "769709009fa0660bdbe9559f59b9f183e8099bdf0c3227c201796eb0f33bbb99"
+        }
+      ]
+    }
+  ],
+  "structure": [
+    {
+      "entity": "lower",
+      "type": "profile_transition",
+      "value": "rectangle_to_cross"
+    },
+    {
+      "entity": "upper",
+      "type": "profile_transition",
+      "value": "cross_to_rectangle"
+    },
+    {
+      "entity": "upper",
+      "type": "alignment",
+      "value": "centered_xz"
+    }
+  ],
+  "view_requirements": [
+    {
+      "drawing_block": "VIEW_FRONT",
+      "type": "orthographic",
+      "direction": [
+        0,
+        0,
+        1
+      ],
+      "right": [
+        1,
+        0,
+        0
+      ],
+      "segments": [
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              0.0
+            ],
+            [
+              -45.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              0.0
+            ],
+            [
+              -15.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              0.0
+            ],
+            [
+              45.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              60.0
+            ],
+            [
+              -15.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              60.0
+            ],
+            [
+              -15.0,
+              90.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -15.0,
+              60.0
+            ],
+            [
+              -15.0,
+              90.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -15.0,
+              60.0
+            ],
+            [
+              15.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -15.0,
+              90.0
+            ],
+            [
+              15.0,
+              90.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              15.0,
+              60.0
+            ],
+            [
+              15.0,
+              90.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              15.0,
+              60.0
+            ],
+            [
+              45.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              15.0,
+              60.0
+            ],
+            [
+              45.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              15.0,
+              90.0
+            ],
+            [
+              45.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              45.0,
+              0.0
+            ],
+            [
+              45.0,
+              60.0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "drawing_block": "VIEW_RIGHT",
+      "type": "orthographic",
+      "direction": [
+        -1,
+        0,
+        0
+      ],
+      "right": [
+        0,
+        0,
+        1
+      ],
+      "segments": [
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              0.0
+            ],
+            [
+              -45.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              0.0
+            ],
+            [
+              -15.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              0.0
+            ],
+            [
+              45.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              60.0
+            ],
+            [
+              -15.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              60.0
+            ],
+            [
+              -15.0,
+              90.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -15.0,
+              60.0
+            ],
+            [
+              -15.0,
+              90.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -15.0,
+              60.0
+            ],
+            [
+              15.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -15.0,
+              90.0
+            ],
+            [
+              15.0,
+              90.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              15.0,
+              60.0
+            ],
+            [
+              15.0,
+              90.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              15.0,
+              60.0
+            ],
+            [
+              45.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              15.0,
+              60.0
+            ],
+            [
+              45.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              15.0,
+              90.0
+            ],
+            [
+              45.0,
+              60.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              45.0,
+              0.0
+            ],
+            [
+              45.0,
+              60.0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "drawing_block": "VIEW_TOP",
+      "type": "orthographic",
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "right": [
+        1,
+        0,
+        0
+      ],
+      "segments": [
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -45.0,
+              -45.0
+            ],
+            [
+              -45.0,
+              -15.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              -45.0
+            ],
+            [
+              -45.0,
+              45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -45.0,
+              -45.0
+            ],
+            [
+              -15.0,
+              -45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -45.0,
+              -45.0
+            ],
+            [
+              -15.0,
+              -15.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              -45.0
+            ],
+            [
+              45.0,
+              -45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -45.0,
+              -15.0
+            ],
+            [
+              -45.0,
+              15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -45.0,
+              -15.0
+            ],
+            [
+              -15.0,
+              -15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -45.0,
+              15.0
+            ],
+            [
+              -45.0,
+              45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -45.0,
+              15.0
+            ],
+            [
+              -15.0,
+              15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -45.0,
+              45.0
+            ],
+            [
+              -15.0,
+              15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -45.0,
+              45.0
+            ],
+            [
+              -15.0,
+              45.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -45.0,
+              45.0
+            ],
+            [
+              45.0,
+              45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -15.0,
+              -45.0
+            ],
+            [
+              -15.0,
+              -15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -15.0,
+              -45.0
+            ],
+            [
+              15.0,
+              -45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -15.0,
+              -15.0
+            ],
+            [
+              -15.0,
+              15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -15.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -15.0,
+              15.0
+            ],
+            [
+              -15.0,
+              45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -15.0,
+              15.0
+            ],
+            [
+              15.0,
+              15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              -15.0,
+              45.0
+            ],
+            [
+              15.0,
+              45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              15.0,
+              -45.0
+            ],
+            [
+              15.0,
+              -15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              15.0,
+              -45.0
+            ],
+            [
+              45.0,
+              -45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              15.0,
+              -15.0
+            ],
+            [
+              15.0,
+              15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              15.0,
+              -15.0
+            ],
+            [
+              45.0,
+              -45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              15.0,
+              -15.0
+            ],
+            [
+              45.0,
+              -15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              15.0,
+              15.0
+            ],
+            [
+              15.0,
+              45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              15.0,
+              15.0
+            ],
+            [
+              45.0,
+              15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              15.0,
+              15.0
+            ],
+            [
+              45.0,
+              45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              15.0,
+              45.0
+            ],
+            [
+              45.0,
+              45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              45.0,
+              -45.0
+            ],
+            [
+              45.0,
+              -15.0
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              45.0,
+              -45.0
+            ],
+            [
+              45.0,
+              45.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              45.0,
+              -15.0
+            ],
+            [
+              45.0,
+              15.0
+            ]
+          ]
+        },
+        {
+          "layer": "HIDDEN",
+          "points": [
+            [
+              45.0,
+              15.0
+            ],
+            [
+              45.0,
+              45.0
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "reference_view_count": 3,
+  "annotation_bindings": {
+    "width_x": {
+      "drawing_block": "VIEW_FRONT",
+      "type": "length",
+      "anchors": [
+        [
+          -45.0,
+          0
+        ],
+        [
+          45.0,
+          0
+        ]
+      ],
+      "axis": "x",
+      "terms": {
+        "base.width_x": 1
+      },
+      "demo_value": 90.0,
+      "demo_position": [
+        0,
+        -18
+      ]
+    },
+    "width_z": {
+      "drawing_block": "VIEW_RIGHT",
+      "type": "length",
+      "anchors": [
+        [
+          -45.0,
+          0
+        ],
+        [
+          45.0,
+          0
+        ]
+      ],
+      "axis": "x",
+      "terms": {
+        "base.width_z": 1
+      },
+      "demo_value": 90.0,
+      "demo_position": [
+        0,
+        -18
+      ]
+    },
+    "lower_height": {
+      "drawing_block": "VIEW_FRONT",
+      "type": "length",
+      "anchors": [
+        [
+          -45.0,
+          0
+        ],
+        [
+          -45.0,
+          60.0
+        ]
+      ],
+      "axis": "y",
+      "terms": {
+        "lower.height": 1
+      },
+      "demo_value": 60.0,
+      "demo_position": [
+        -68,
+        0
+      ]
+    },
+    "upper_height": {
+      "drawing_block": "VIEW_FRONT",
+      "type": "length",
+      "anchors": [
+        [
+          45.0,
+          60.0
+        ],
+        [
+          15.0,
+          90.0
+        ]
+      ],
+      "axis": "y",
+      "terms": {
+        "upper.height": 1
+      },
+      "demo_value": 30.0,
+      "demo_position": [
+        70,
+        60.0
+      ]
+    },
+    "neck_x": {
+      "drawing_block": "VIEW_TOP",
+      "type": "length",
+      "anchors": [
+        [
+          -15.0,
+          15.0
+        ],
+        [
+          15.0,
+          15.0
+        ]
+      ],
+      "axis": "x",
+      "terms": {
+        "neck.width_x": 1
+      },
+      "demo_value": 30.0,
+      "demo_position": [
+        0,
+        66
+      ]
+    },
+    "neck_z": {
+      "drawing_block": "VIEW_TOP",
+      "type": "length",
+      "anchors": [
+        [
+          15.0,
+          -15.0
+        ],
+        [
+          15.0,
+          15.0
+        ]
+      ],
+      "axis": "y",
+      "terms": {
+        "neck.width_z": 1
+      },
+      "demo_value": 30.0,
+      "demo_position": [
+        66,
+        0
+      ]
+    },
+    "overall_height": {
+      "drawing_block": "VIEW_FRONT",
+      "type": "length",
+      "anchors": [
+        [
+          45.0,
+          0
+        ],
+        [
+          15.0,
+          90.0
+        ]
+      ],
+      "axis": "y",
+      "terms": {
+        "lower.height": 1,
+        "upper.height": 1
+      },
+      "demo_value": 90.0,
+      "demo_position": [
+        96,
+        0
+      ]
+    },
+    "profile_note": {
+      "drawing_block": "VIEW_TOP",
+      "type": "structure_note",
+      "text": "STRAIGHT FACETS; RECTANGLE-CROSS-RECTANGLE; CENTERED X/Z",
+      "position": [
+        -78,
+        -80
+      ],
+      "value": "faceted_centered_stations",
+      "structures": [
+        {
+          "entity": "lower",
+          "type": "profile_transition",
+          "value": "rectangle_to_cross"
+        },
+        {
+          "entity": "upper",
+          "type": "profile_transition",
+          "value": "cross_to_rectangle"
+        },
+        {
+          "entity": "upper",
+          "type": "alignment",
+          "value": "centered_xz"
+        }
+      ],
+      "required_centerlines": [
+        [
+          [
+            -52,
+            0
+          ],
+          [
+            52,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            -52
+          ],
+          [
+            0,
+            52
+          ]
+        ]
+      ],
+      "equations": []
+    }
+  },
+  "parameter_sources": {
+    "base.width_x": {
+      "feature": "草图1",
+      "dimension_prefix": "D1@草图1"
+    },
+    "base.width_z": {
+      "feature": "草图1",
+      "dimension_prefix": "D2@草图1"
+    },
+    "neck.width_x": {
+      "feature": "草图2",
+      "dimension_prefix": "D1@草图2"
+    },
+    "neck.width_z": {
+      "feature": "草图2",
+      "dimension_prefix": "D2@草图2"
+    },
+    "lower.height": {
+      "feature": "凸台-拉伸1",
+      "dimension_prefix": "D1@凸台-拉伸1"
+    },
+    "upper.height": {
+      "feature": "基准面1",
+      "dimension_prefix": "D1@基准面1"
+    }
+  },
+  "normalization": "Final planar station transitions; original extrusion/loft/cut order is not the expected feature answer"
+}
