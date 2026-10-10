@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "benchcad-3d2d"
+version = "0.2.0"
+description = "Configurable, evidence-aware 3D-to-2D relation verifier framework"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+cad = ["cadquery>=2.4", "ezdxf>=1.1"]
+
+[tool.setuptools.packages.find]
+include = ["benchcad3d2d*"]

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:benchcad:3d2d:prediction:0.1",
+  "title": "BenchCAD 3D2D development prediction",
+  "type": "object",
+  "required": ["schema_version", "case_id", "units", "features", "views", "dimensions", "structure"],
+  "properties": {
+    "schema_version": {"const": "benchcad-3d2d-prediction/0.1"},
+    "case_id": {"type": "string", "minLength": 1},
+    "units": {"const": "mm"},
+    "features": {"type": "array", "items": {"type": "object", "required": ["id", "type"]}},
+    "views": {"type": "array", "items": {"type": "object", "required": ["id", "type"], "properties": {"id": {"type": "string"}, "drawing_block": {"type": "string"}, "cut_plane": {"type": "object", "required": ["point_mm", "normal"], "properties": {"point_mm": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}}, "normal": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}}}}}}},
+    "dimensions": {"type": "array", "items": {"$ref": "#/$defs/annotation"}},
+    "structure": {"type": "array", "items": {"$ref": "#/$defs/annotation"}}
+  },
+  "$defs": {"annotation": {"type": "object", "required": ["id", "view_id", "type"], "properties": {"id": {"type": "string", "minLength": 1}, "view_id": {"type": "string"}, "type": {"type": "string"}, "value": {"type": ["number", "string", "boolean"]}, "drawing_ref": {"type": "string"}, "binding_ref": {"type": "string"}, "terms": {"type": "object", "additionalProperties": {"type": "number"}}}}}
+}

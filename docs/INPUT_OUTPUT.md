@@ -72,12 +72,13 @@ cases/<case_id>/
 
 ```text
 submission/
-├── drawing.pdf              本次生成的二维图纸
+├── drawing.dxf              当前受控评分的二维图纸
+├── drawing.pdf              可选预览或备选识别输入（PDF 识别尚未实现）
 ├── prediction.json          特征、视图、尺寸与结构标注
 └── model.py                 可选的 CQ 特征构造表示
 ```
 
-这里的 `drawing.pdf` 是模型输出，不是要求下载或提供的配套参考图。CQ 可代替特征构造表示，但不能代替二维制图结果和尺寸关系记录；最终仍需通过适配器得到统一的可评分结构。
+这里的图纸是模型输出，不是要求下载或提供的配套参考图。当前只有受控 DXF 可以检查实际图纸证据；PDF 保留为备选接口，`--mode pdf` 当前返回暂不支持、总分 null。接口见 [EVIDENCE_ADAPTERS.md](EVIDENCE_ADAPTERS.md)。推荐后续由评测端从 DXF 生成 PDF 预览，但导出器尚未实现。CQ 可代替特征构造表示，但不能代替二维制图结果和尺寸关系记录；最终仍需通过适配器得到统一的可评分结构。
 
 `prediction.json` 至少包含：
 

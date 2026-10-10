@@ -4,5 +4,6 @@ __pycache__/
 .pytest_cache/
 outputs/
 reports/
+.outputs/
 *.zip
 .DS_Store
