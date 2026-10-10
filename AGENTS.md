@@ -11,3 +11,4 @@ Read `README.md`, `docs/DESIGN.md`, and `docs/CASE_SPEC.md` before changing the 
 - Do not invent extraction results, model scores, or source-pair validation.
 - Keep scoring proposals labeled until implemented and calibrated.
 - Use DCO-signed commits and focused PRs with reviewable evidence.
+- Publish future repository changes through an issue-linked PR from a work branch; do not push changes directly to the default branch.

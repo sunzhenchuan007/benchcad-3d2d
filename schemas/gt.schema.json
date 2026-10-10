@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:benchcad:3d2d:gt:0.1",
+  "title": "BenchCAD 3D2D development GT",
+  "type": "object",
+  "required": ["schema_version", "case_id", "units", "geometry", "variables", "required_variables", "entities", "structure"],
+  "properties": {
+    "schema_version": {"const": "benchcad-3d2d-gt/0.1"},
+    "case_id": {"type": "string", "minLength": 1},
+    "units": {"const": "mm"},
+    "geometry": {"type": "object", "required": ["anchors"], "properties": {"anchors": {"type": "object", "additionalProperties": {"type": "number"}}, "input_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}},
+    "variables": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "object", "required": ["value"], "properties": {"value": {"type": "number"}, "axis": {"enum": ["x", "y", "z"]}, "type": {"type": "string"}}}},
+    "required_variables": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+    "entities": {"type": "array", "items": {"type": "object", "required": ["id", "type"]}},
+    "structure": {"type": "array", "items": {"type": "object", "required": ["entity", "type", "value"]}},
+    "annotation_bindings": {"type": "object", "additionalProperties": {"type": "object", "required": ["drawing_block", "type"]}},
+    "view_requirements": {"type": "array", "items": {"type": "object", "required": ["drawing_block", "type"]}},
+    "reference_view_count": {"type": "integer", "minimum": 1}
+  }
+}

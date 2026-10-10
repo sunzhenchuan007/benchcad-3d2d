@@ -1,0 +1,161 @@
+{
+  "schema_version": "benchcad-3d2d-prediction/0.1",
+  "case_id": "synthetic_c002_framework",
+  "units": "mm",
+  "features": [
+    {
+      "id": "p1",
+      "type": "stepped_blind_hole",
+      "center": [
+        -28,
+        0,
+        20
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "parameters": {
+        "counterbore_diameter": 16,
+        "pilot_diameter": 10,
+        "counterbore_depth": 6,
+        "depth": 15
+      }
+    },
+    {
+      "id": "p2",
+      "type": "stepped_blind_hole",
+      "center": [
+        28,
+        0,
+        20
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "parameters": {
+        "counterbore_diameter": 16,
+        "pilot_diameter": 10,
+        "counterbore_depth": 6,
+        "depth": 15
+      }
+    }
+  ],
+  "views": [
+    {
+      "id": "top",
+      "drawing_block": "VIEW_TOP",
+      "type": "orthographic"
+    },
+    {
+      "id": "section",
+      "drawing_block": "VIEW_SECTION",
+      "type": "full_section",
+      "cut_plane": {
+        "point_mm": [
+          0,
+          0,
+          10
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ]
+      }
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "a_g01",
+      "view_id": "top",
+      "type": "length",
+      "binding_ref": "g01",
+      "value": 120,
+      "drawing_ref": "74"
+    },
+    {
+      "id": "a_g02",
+      "view_id": "top",
+      "type": "length",
+      "binding_ref": "g02",
+      "value": 56,
+      "drawing_ref": "87"
+    },
+    {
+      "id": "a_g03",
+      "view_id": "section",
+      "type": "length",
+      "binding_ref": "g03",
+      "value": 20,
+      "drawing_ref": "96"
+    },
+    {
+      "id": "a_g04",
+      "view_id": "top",
+      "type": "signed_distance",
+      "binding_ref": "g04",
+      "value": 56,
+      "drawing_ref": "A5"
+    },
+    {
+      "id": "a_g05",
+      "view_id": "section",
+      "type": "diameter",
+      "binding_ref": "g05",
+      "value": 16,
+      "drawing_ref": "B4"
+    },
+    {
+      "id": "a_g06",
+      "view_id": "section",
+      "type": "diameter",
+      "binding_ref": "g06",
+      "value": 10,
+      "drawing_ref": "C3"
+    },
+    {
+      "id": "a_g07",
+      "view_id": "section",
+      "type": "depth",
+      "binding_ref": "g07",
+      "value": 6,
+      "drawing_ref": "D2"
+    },
+    {
+      "id": "a_g08",
+      "view_id": "section",
+      "type": "depth",
+      "binding_ref": "g08",
+      "value": 15,
+      "drawing_ref": "E1"
+    },
+    {
+      "id": "a_g11",
+      "view_id": "top",
+      "type": "symmetry",
+      "binding_ref": "g11",
+      "drawing_ref": "F0"
+    },
+    {
+      "id": "a_g12",
+      "view_id": "top",
+      "type": "alignment",
+      "binding_ref": "g12",
+      "drawing_ref": "F1"
+    }
+  ],
+  "structure": [
+    {
+      "id": "a_g13",
+      "view_id": "top",
+      "type": "termination",
+      "binding_ref": "g13",
+      "value": "blind",
+      "drawing_ref": "F2"
+    }
+  ]
+}

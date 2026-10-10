@@ -1,0 +1,28 @@
+{
+  "schema_version": "benchcad-3d2d-rules/0.2",
+  "rule_set_id": "development-v0.2",
+  "calibrated": false,
+  "units": "mm",
+  "tolerances": {
+    "value_absolute_mm": 0.1,
+    "value_relative": 0.000001,
+    "equation_consistency_mm": 0.000001,
+    "drawing_coordinates_mm": 0.1,
+    "direction_degrees": 1
+  },
+  "weights": {"features": 0.4, "dimensions": 0.35, "views": 0.2, "efficiency": 0.05},
+  "section_marking": {
+    "budget_points": 10,
+    "missing_trace_points": 10,
+    "wrong_trace_points": 4,
+    "arrows_points": 2,
+    "labels_points": 2,
+    "title_points": 2
+  },
+  "view_geometry_fraction": 0.5,
+  "matrix_rank_rcond": 1e-12,
+  "readability": {"budget_points": 10, "collision_points": 2, "clearance_mm": 0.3},
+  "efficiency_requires_complete": true,
+  "unsupported_blocks_completion": true,
+  "limits": {"variables": 128, "annotations": 512}
+}

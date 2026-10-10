@@ -1,0 +1,926 @@
+{
+  "schema_version": "benchcad-3d2d-gt/0.1",
+  "case_id": "synthetic_c002_framework",
+  "synthetic": true,
+  "units": "mm",
+  "scope": "15 explicit linear length/position parameters, two blind-hole structures and controlled top/full-section DXF",
+  "geometry": {
+    "anchors": {
+      "origin.x": 0,
+      "origin.y": 0,
+      "origin.z": 0
+    },
+    "input_sha256": "34946bbd049b43e805d18eba29b2615de4eda1813bedc585e66e2ee66e6b4c89",
+    "frame": "plate-centered XY; Z=0 at underside"
+  },
+  "variables": {
+    "plate.length": {
+      "type": "length",
+      "value": 120
+    },
+    "plate.width": {
+      "type": "length",
+      "value": 56
+    },
+    "plate.thickness": {
+      "type": "length",
+      "value": 20
+    },
+    "H1.center.x": {
+      "axis": "x",
+      "value": -28
+    },
+    "H1.center.y": {
+      "axis": "y",
+      "value": 0
+    },
+    "H1.counterbore_diameter": {
+      "type": "diameter",
+      "value": 16
+    },
+    "H1.pilot_diameter": {
+      "type": "diameter",
+      "value": 10
+    },
+    "H1.counterbore_depth": {
+      "type": "depth",
+      "value": 6
+    },
+    "H1.depth": {
+      "type": "depth",
+      "value": 15
+    },
+    "H2.center.x": {
+      "axis": "x",
+      "value": 28
+    },
+    "H2.center.y": {
+      "axis": "y",
+      "value": 0
+    },
+    "H2.counterbore_diameter": {
+      "type": "diameter",
+      "value": 16
+    },
+    "H2.pilot_diameter": {
+      "type": "diameter",
+      "value": 10
+    },
+    "H2.counterbore_depth": {
+      "type": "depth",
+      "value": 6
+    },
+    "H2.depth": {
+      "type": "depth",
+      "value": 15
+    }
+  },
+  "required_variables": [
+    "plate.length",
+    "plate.width",
+    "plate.thickness",
+    "H1.center.x",
+    "H1.center.y",
+    "H1.counterbore_diameter",
+    "H1.pilot_diameter",
+    "H1.counterbore_depth",
+    "H1.depth",
+    "H2.center.x",
+    "H2.center.y",
+    "H2.counterbore_diameter",
+    "H2.pilot_diameter",
+    "H2.counterbore_depth",
+    "H2.depth"
+  ],
+  "entities": [
+    {
+      "id": "H1",
+      "type": "stepped_blind_hole",
+      "center": [
+        -28,
+        0,
+        20
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "parameters": {
+        "counterbore_diameter": 16,
+        "pilot_diameter": 10,
+        "counterbore_depth": 6,
+        "depth": 15
+      }
+    },
+    {
+      "id": "H2",
+      "type": "stepped_blind_hole",
+      "center": [
+        28,
+        0,
+        20
+      ],
+      "axis": [
+        0,
+        0,
+        1
+      ],
+      "parameters": {
+        "counterbore_diameter": 16,
+        "pilot_diameter": 10,
+        "counterbore_depth": 6,
+        "depth": 15
+      }
+    }
+  ],
+  "structure": [
+    {
+      "entity": "H1",
+      "type": "termination",
+      "value": "blind"
+    },
+    {
+      "entity": "H2",
+      "type": "termination",
+      "value": "blind"
+    }
+  ],
+  "annotation_bindings": {
+    "g01": {
+      "drawing_block": "VIEW_TOP",
+      "type": "length",
+      "axis": "x",
+      "anchors": [
+        [
+          -60,
+          -28
+        ],
+        [
+          60,
+          -28
+        ]
+      ],
+      "terms": {
+        "plate.length": 1
+      },
+      "demo_value": 120,
+      "demo_position": [
+        0,
+        -62
+      ]
+    },
+    "g02": {
+      "drawing_block": "VIEW_TOP",
+      "type": "length",
+      "axis": "y",
+      "anchors": [
+        [
+          -60,
+          -28
+        ],
+        [
+          -60,
+          28
+        ]
+      ],
+      "terms": {
+        "plate.width": 1
+      },
+      "demo_value": 56,
+      "demo_position": [
+        -75,
+        0
+      ]
+    },
+    "g03": {
+      "drawing_block": "VIEW_SECTION",
+      "type": "length",
+      "axis": "y",
+      "anchors": [
+        [
+          60,
+          0
+        ],
+        [
+          60,
+          20
+        ]
+      ],
+      "terms": {
+        "plate.thickness": 1
+      },
+      "demo_value": 20,
+      "demo_position": [
+        75,
+        10
+      ]
+    },
+    "g04": {
+      "drawing_block": "VIEW_TOP",
+      "type": "signed_distance",
+      "axis": "x",
+      "anchors": [
+        [
+          -28,
+          0
+        ],
+        [
+          28,
+          0
+        ]
+      ],
+      "terms": {
+        "H1.center.x": -1,
+        "H2.center.x": 1
+      },
+      "demo_value": 56,
+      "demo_position": [
+        0,
+        40
+      ]
+    },
+    "g05": {
+      "drawing_block": "VIEW_SECTION",
+      "type": "diameter",
+      "axis": "x",
+      "anchors": [
+        [
+          -36,
+          18
+        ],
+        [
+          -20,
+          18
+        ]
+      ],
+      "terms": {
+        "H1.counterbore_diameter": 1
+      },
+      "demo_value": 16,
+      "demo_position": [
+        -28,
+        46
+      ]
+    },
+    "g06": {
+      "drawing_block": "VIEW_SECTION",
+      "type": "diameter",
+      "axis": "x",
+      "anchors": [
+        [
+          -33,
+          9
+        ],
+        [
+          -23,
+          9
+        ]
+      ],
+      "terms": {
+        "H1.pilot_diameter": 1
+      },
+      "demo_value": 10,
+      "demo_position": [
+        -28,
+        30
+      ]
+    },
+    "g07": {
+      "drawing_block": "VIEW_SECTION",
+      "type": "depth",
+      "axis": "y",
+      "anchors": [
+        [
+          20,
+          14
+        ],
+        [
+          20,
+          20
+        ]
+      ],
+      "terms": {
+        "H2.counterbore_depth": 1
+      },
+      "demo_value": 6,
+      "demo_position": [
+        85,
+        17
+      ]
+    },
+    "g08": {
+      "drawing_block": "VIEW_SECTION",
+      "type": "depth",
+      "axis": "y",
+      "anchors": [
+        [
+          -23,
+          5
+        ],
+        [
+          -23,
+          20
+        ]
+      ],
+      "terms": {
+        "H1.depth": 1
+      },
+      "demo_value": 15,
+      "demo_position": [
+        -75,
+        13
+      ]
+    },
+    "g09": {
+      "drawing_block": "VIEW_TOP",
+      "type": "signed_distance",
+      "axis": "x",
+      "anchors": [
+        [
+          0,
+          0
+        ],
+        [
+          -28,
+          0
+        ]
+      ],
+      "terms": {
+        "H1.center.x": 1
+      },
+      "demo_value": -28,
+      "demo_position": [
+        -14,
+        40
+      ]
+    },
+    "g10": {
+      "drawing_block": "VIEW_TOP",
+      "type": "signed_distance",
+      "axis": "x",
+      "anchors": [
+        [
+          0,
+          0
+        ],
+        [
+          28,
+          0
+        ]
+      ],
+      "terms": {
+        "H2.center.x": 1
+      },
+      "demo_value": 28,
+      "demo_position": [
+        14,
+        46
+      ]
+    },
+    "g14": {
+      "drawing_block": "VIEW_TOP",
+      "type": "length",
+      "axis": "x",
+      "anchors": [
+        [
+          -60,
+          0
+        ],
+        [
+          -28,
+          0
+        ]
+      ],
+      "terms": {
+        "plate.length": 0.5,
+        "H1.center.x": 1
+      },
+      "demo_value": 32,
+      "demo_position": [
+        -44,
+        48
+      ]
+    },
+    "g15": {
+      "drawing_block": "VIEW_TOP",
+      "type": "length",
+      "axis": "x",
+      "anchors": [
+        [
+          28,
+          0
+        ],
+        [
+          60,
+          0
+        ]
+      ],
+      "terms": {
+        "plate.length": 0.5,
+        "H2.center.x": -1
+      },
+      "demo_value": 32,
+      "demo_position": [
+        44,
+        48
+      ]
+    },
+    "g11": {
+      "drawing_block": "VIEW_TOP",
+      "type": "symmetry",
+      "text": "HOLES SYMMETRIC ABOUT X=0",
+      "position": [
+        -53,
+        -38
+      ],
+      "required_centerlines": [
+        [
+          [
+            0,
+            -35
+          ],
+          [
+            0,
+            35
+          ]
+        ]
+      ],
+      "equations": [
+        {
+          "terms": {
+            "H1.center.x": 1,
+            "H2.center.x": 1
+          },
+          "value": 0
+        }
+      ]
+    },
+    "g12": {
+      "drawing_block": "VIEW_TOP",
+      "type": "alignment",
+      "text": "BOTH HOLE AXES ON Y=0",
+      "position": [
+        -53,
+        -43
+      ],
+      "required_centerlines": [
+        [
+          [
+            -45,
+            0
+          ],
+          [
+            45,
+            0
+          ]
+        ]
+      ],
+      "equations": [
+        {
+          "terms": {
+            "H1.center.y": 1
+          },
+          "value": 0
+        },
+        {
+          "terms": {
+            "H2.center.y": 1
+          },
+          "value": 0
+        }
+      ]
+    },
+    "g13": {
+      "drawing_block": "VIEW_TOP",
+      "type": "termination",
+      "text": "2X IDENTICAL COUNTERBORED BLIND HOLES",
+      "position": [
+        -53,
+        -48
+      ],
+      "value": "blind",
+      "structures": [
+        {
+          "entity": "H1",
+          "type": "termination",
+          "value": "blind"
+        },
+        {
+          "entity": "H2",
+          "type": "termination",
+          "value": "blind"
+        }
+      ],
+      "equations": [
+        {
+          "terms": {
+            "H1.counterbore_diameter": 1,
+            "H2.counterbore_diameter": -1
+          },
+          "value": 0
+        },
+        {
+          "terms": {
+            "H1.pilot_diameter": 1,
+            "H2.pilot_diameter": -1
+          },
+          "value": 0
+        },
+        {
+          "terms": {
+            "H1.counterbore_depth": 1,
+            "H2.counterbore_depth": -1
+          },
+          "value": 0
+        },
+        {
+          "terms": {
+            "H1.depth": 1,
+            "H2.depth": -1
+          },
+          "value": 0
+        }
+      ]
+    }
+  },
+  "reference_view_count": 2,
+  "view_requirements": [
+    {
+      "drawing_block": "VIEW_TOP",
+      "type": "orthographic",
+      "segments": [
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -60,
+              -28
+            ],
+            [
+              60,
+              -28
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              60,
+              -28
+            ],
+            [
+              60,
+              28
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              60,
+              28
+            ],
+            [
+              -60,
+              28
+            ]
+          ]
+        },
+        {
+          "layer": "OUTLINE",
+          "points": [
+            [
+              -60,
+              28
+            ],
+            [
+              -60,
+              -28
+            ]
+          ]
+        }
+      ],
+      "circles": [
+        {
+          "center": [
+            -28,
+            0
+          ],
+          "radius": 5
+        },
+        {
+          "center": [
+            -28,
+            0
+          ],
+          "radius": 8
+        },
+        {
+          "center": [
+            28,
+            0
+          ],
+          "radius": 5
+        },
+        {
+          "center": [
+            28,
+            0
+          ],
+          "radius": 8
+        }
+      ]
+    },
+    {
+      "drawing_block": "VIEW_SECTION",
+      "type": "full_section",
+      "parent_block": "VIEW_TOP",
+      "cut_plane": {
+        "point_mm": [
+          0,
+          0,
+          10
+        ],
+        "normal": [
+          0,
+          1,
+          0
+        ]
+      },
+      "cutting_trace": [
+        [
+          -68,
+          0
+        ],
+        [
+          68,
+          0
+        ]
+      ],
+      "segments": [
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              -36,
+              20
+            ],
+            [
+              -36,
+              14
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              -20,
+              20
+            ],
+            [
+              -20,
+              14
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              -36,
+              14
+            ],
+            [
+              -33,
+              14
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              -23,
+              14
+            ],
+            [
+              -20,
+              14
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              -33,
+              14
+            ],
+            [
+              -33,
+              5
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              -23,
+              14
+            ],
+            [
+              -23,
+              5
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              -33,
+              5
+            ],
+            [
+              -23,
+              5
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              20,
+              20
+            ],
+            [
+              20,
+              14
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              36,
+              20
+            ],
+            [
+              36,
+              14
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              20,
+              14
+            ],
+            [
+              23,
+              14
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              33,
+              14
+            ],
+            [
+              36,
+              14
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              23,
+              14
+            ],
+            [
+              23,
+              5
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              33,
+              14
+            ],
+            [
+              33,
+              5
+            ]
+          ]
+        },
+        {
+          "layer": "CUT_EDGE",
+          "points": [
+            [
+              23,
+              5
+            ],
+            [
+              33,
+              5
+            ]
+          ]
+        }
+      ],
+      "arrow_segments": [
+        [
+          [
+            -68,
+            0
+          ],
+          [
+            -68,
+            -10
+          ]
+        ],
+        [
+          [
+            68,
+            0
+          ],
+          [
+            68,
+            -10
+          ]
+        ]
+      ],
+      "arrow_heads": [
+        [
+          [
+            -68,
+            -10
+          ],
+          [
+            -69.5,
+            -6.5
+          ],
+          [
+            -66.5,
+            -6.5
+          ]
+        ],
+        [
+          [
+            68,
+            -10
+          ],
+          [
+            66.5,
+            -6.5
+          ],
+          [
+            69.5,
+            -6.5
+          ]
+        ]
+      ],
+      "end_labels": [
+        {
+          "text": "A",
+          "position": [
+            -68,
+            4
+          ]
+        },
+        {
+          "text": "A",
+          "position": [
+            68,
+            4
+          ]
+        }
+      ],
+      "section_titles": [
+        {
+          "text": "A-A",
+          "position": [
+            -6,
+            35
+          ]
+        }
+      ]
+    }
+  ]
+}

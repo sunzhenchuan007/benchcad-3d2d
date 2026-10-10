@@ -4,7 +4,7 @@
 
 模型输入 STEP 实体，识别特征及其参数关系，并生成能够完整表达零件几何的二维工程图。GT 从 SLDPRT 特征树或等价的 CadQuery 程序提取，依据独立参数与约束构建，不依赖配套工程图。
 
-This repository contains the task proposal and six pilot cases from T1: **01, 13, 15, 84, 86, and 88**. Only STEP and SLDPRT source assets are included. Source collection and integrity checks are complete; native CAD pairing, feature extraction, and the scoring implementation remain to be completed.
+This repository contains the task proposal and six pilot cases from T1: **01, 13, 15, 84, 86, and 88**. Only STEP and SLDPRT source assets are included. Source collection and integrity checks are complete; native CAD pairing and feature extraction remain to be completed. A development verifier now runs on synthetic relation examples and a controlled CQ/STEP/DXF case; it does not make the six source cases ready for scoring.
 
 ## Repository layout
 
@@ -28,15 +28,28 @@ tools/verify_sources.py
 - [Input and output layout](docs/INPUT_OUTPUT.md)
 - [Dimension-chain search algorithm](docs/RELATION_SEARCH.md)
 - [Worked JSON example](examples/dimension_chain/README.md)
+- [Plate-hole drawing and scoring demonstration (not a benchmark case)](examples/plate_holes/README.md)
 - [Contributing](CONTRIBUTING.md)
 - [Review checklist](docs/REVIEWING.md)
 - [Status and next implementation steps](docs/STATUS.md)
+- [Runnable v0.1 framework](docs/FRAMEWORK.md)
+- [Drawing evidence interface and reserved PDF fallback](docs/EVIDENCE_ADAPTERS.md)
+- [Configurable v0.1 rules](docs/RULES_V0_2.md)
 
 ```bash
 python tools/verify_sources.py
 ```
 
 The command verifies source paths, file types, sizes, SHA-256 hashes, and registry consistency. It does **not** extract a feature tree, validate CAD geometry, or score a model. Python 3.10 or later is sufficient; no third-party dependencies are required.
+
+Run the framework's relation checks (NumPy required):
+
+```bash
+python -m unittest discover -s tests -v
+python tools/run_framework_demo.py
+```
+
+For the actual synthetic STEP/DXF demonstration, run `python tools/build_controlled_demo.py` in a Python environment with CadQuery and ezdxf. Artifacts are generated under `.outputs/`, separately from the source cases. Rules, weights, tolerances and section-marking penalties are configured in `config/rules.v0.2.json`; development scores are not calibrated benchmark results.
 
 ## Task boundary
 

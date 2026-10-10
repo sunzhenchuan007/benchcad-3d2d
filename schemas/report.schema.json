@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:benchcad:3d2d:report:0.2",
+  "type": "object",
+  "required": ["schema_version", "status"],
+  "properties": {
+    "schema_version": {"const": "benchcad-3d2d-report/0.2"},
+    "status": {"enum": ["pass", "relations_complete", "fail", "invalid_input", "unsupported"]},
+    "score": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+    "whole_drawing_complete": {"type": "boolean"},
+    "complete_within_relation_scope": {"type": "boolean"},
+    "drawing_evidence_checked": {"type": "boolean"},
+    "drawing_evidence_verified": {"type": "boolean"},
+    "rules_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "drawing_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "verifier_revision": {"type": "string"},
+    "drawn_nominal_diagnostics": {"type": "object"},
+    "dependency_diagnostics": {"type": "object"},
+    "underdetermined_required_variables": {"type": "array", "items": {"type": "string"}},
+    "annotation_evidence": {"type": "object"},
+    "error": {"type": "string"}
+  },
+  "allOf": [{"if": {"properties": {"status": {"const": "invalid_input"}}}, "then": {"required": ["error"]}, "else": {"required": ["case_id", "rule_set_id", "rules_sha256", "mode", "score", "components", "dimensions", "whole_drawing_complete", "unsupported"]}}]
+}

@@ -31,4 +31,4 @@ The planned submission contains a generated drawing, recognized features or an e
 
 The generated drawing and its structured records must agree. Parameters present only in prediction JSON or known only to the geometry backend do not count as information expressed on the drawing.
 
-The target input, GT, and submission layout is specified in [INPUT_OUTPUT.md](INPUT_OUTPUT.md), with a [worked JSON example](../examples/dimension_chain/README.md) and a [relation-search algorithm](RELATION_SEARCH.md). The full production schemas are to be frozen during implementation. The source metadata schema shipped here is not a claim that a model-submission verifier already exists.
+The target input, GT, and submission layout is specified in [INPUT_OUTPUT.md](INPUT_OUTPUT.md), with a [worked JSON example](../examples/dimension_chain/README.md) and a [relation-search algorithm](RELATION_SEARCH.md). The [v0.1 framework](FRAMEWORK.md) provides development schemas and an executable solver plus a controlled-DXF adapter. Production schemas remain unfrozen. This source metadata schema does not establish that the six source cases have valid GT or are ready for model-submission scoring.

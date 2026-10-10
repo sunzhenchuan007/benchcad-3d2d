@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:benchcad:3d2d:rules:0.2",
+  "type": "object",
+  "required": ["schema_version", "rule_set_id", "calibrated", "units", "tolerances", "weights", "section_marking", "view_geometry_fraction", "matrix_rank_rcond", "readability", "efficiency_requires_complete", "unsupported_blocks_completion", "limits"],
+  "properties": {
+    "schema_version": {"const": "benchcad-3d2d-rules/0.2"},
+    "rule_set_id": {"type": "string"}, "calibrated": {"type": "boolean"}, "units": {"const": "mm"},
+    "tolerances": {"type": "object", "required": ["value_absolute_mm", "value_relative", "equation_consistency_mm", "drawing_coordinates_mm", "direction_degrees"], "additionalProperties": {"type": "number", "exclusiveMinimum": 0}},
+    "weights": {"type": "object", "required": ["features", "dimensions", "views", "efficiency"], "additionalProperties": {"type": "number", "minimum": 0}},
+    "section_marking": {"type": "object", "required": ["budget_points", "missing_trace_points", "wrong_trace_points", "arrows_points", "labels_points", "title_points"], "additionalProperties": {"type": "number", "minimum": 0}},
+    "view_geometry_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+    "matrix_rank_rcond": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+    "readability": {"type": "object", "required": ["budget_points", "collision_points", "clearance_mm"], "properties": {"budget_points": {"type": "number", "exclusiveMinimum": 0}, "collision_points": {"type": "number", "exclusiveMinimum": 0}, "clearance_mm": {"type": "number", "minimum": 0}}},
+    "efficiency_requires_complete": {"const": true}, "unsupported_blocks_completion": {"const": true},
+    "limits": {"type": "object", "required": ["variables", "annotations"], "additionalProperties": {"type": "integer", "minimum": 1, "maximum": 10000}}
+  }
+}
