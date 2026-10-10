@@ -14,6 +14,7 @@
 - Case 84: native/STEP pairing, raw native dimensions, audited six-parameter GT, independent planar CQ reconstruction and 12 controlled three-view drawing variants.
 - A standalone plate-hole explanatory example under `examples/plate_holes/`, excluded from the registry.
 - Versioned configurable rules and JSON interfaces; [framework guide](FRAMEWORK.md) and [rule book](RULES_V0_2.md).
+- Public prediction/0.2 output contract, neutral STEP geometry catalog, and independent STEP/DXF view evidence using OpenCascade HLR and planar full-section reconstruction. Arbitrary orthographic direction bases, sheet placement/rotation/scale and nested single INSERTs are supported; general dimension semantics and overall scoring are not. See [GENERAL_SUBMISSION.md](GENERAL_SUBMISSION.md) and issue #5.
 
 | Case | Files | Source state | Geometry pairing | GT extraction |
 | --- | ---: | --- | --- | --- |

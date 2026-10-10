@@ -28,6 +28,7 @@ tools/verify_sources.py
 - [Task and scoring proposal](docs/DESIGN.md)
 - [Case contract](docs/CASE_SPEC.md)
 - [Input and output layout](docs/INPUT_OUTPUT.md)
+- [General submission contract and independent STEP/DXF view verification](docs/GENERAL_SUBMISSION.md)
 - [Dimension-chain search algorithm](docs/RELATION_SEARCH.md)
 - [Worked JSON example](examples/dimension_chain/README.md)
 - [Plate-hole drawing and scoring demonstration (not a benchmark case)](examples/plate_holes/README.md)
@@ -52,6 +53,8 @@ python tools/run_framework_demo.py
 ```
 
 For the actual synthetic STEP/DXF demonstration, run `python tools/build_controlled_demo.py` in a Python environment with CadQuery and ezdxf. Artifacts are generated under `.outputs/`, separately from the source cases. Rules, weights, tolerances and section-marking penalties are configured in `config/rules.v0.2.json`; development scores are not calibrated benchmark results.
+
+The new `prediction/0.2` contract and `verify-views` command independently rebuild orthographic projections and planar full sections from STEP, accepting arbitrary view frames, sheet placement/rotation/scale and nested single INSERTs. Run `python tools/build_projection_demo.py` for the standalone plate-hole demonstration. This checks view evidence only: general annotation semantics and overall scoring remain unimplemented, with `score: null` and `whole_drawing_complete: false`. See [the public output specification](docs/GENERAL_SUBMISSION.md).
 
 ## Task boundary
 

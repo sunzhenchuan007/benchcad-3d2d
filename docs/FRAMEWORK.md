@@ -23,6 +23,8 @@ tests/test_framework.py     对等价、遗漏、矛盾、伪声明和标记的�
 规则详见 [RULES_V0_2.md](RULES_V0_2.md)。原 DESIGN.md 是整体目标；本页和规则页说明目前真正实现的子集。
 本地执行证据见 [FRAMEWORK_VALIDATION.md](FRAMEWORK_VALIDATION.md)。
 
+新增 [prediction/0.2 通用提交规范与视图核验](GENERAL_SUBMISSION.md)，入口为 `inspect-step` 和 `verify-views`。支持任意正交方向基、纸面变换和平面全剖视；此层独立读取 STEP/DXF，不使用 case 的模板绑定。它不是通用尺寸评分器，整图总分保持 null。下文旧接口的布局/变换限制仍适用于 controlled-dxf。
+
 ## 不需要 CAD 依赖的运行
 
 Python 3.10+ 和 NumPy 即可。当前两个本地 Python 环境均已有 NumPy，没有安装包或更改环境：
