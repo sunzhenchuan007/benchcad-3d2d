@@ -31,3 +31,5 @@ jobs:
       - run: python -m pip install cadquery ezdxf numpy
       - run: python tools/verify_sources.py
       - run: python tools/verify_case84_geometry.py
+      - run: python -m unittest discover -s tests -p test_projection.py -v
+      - run: python tools/build_projection_demo.py
