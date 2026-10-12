@@ -13,7 +13,14 @@ Each `cases/case_NNN/` directory contains `case.json` and a `sources/` subtree. 
 
 `registry.json` indexes exactly the case directories present in this repository. `tools/verify_sources.py` checks this source contract and file integrity only.
 
-## Pair selection and GT extraction
+## Native pairing and parameter GT (historical optional route)
+
+The current [evaluation design](DESIGN.md) uses the selected standardized STEP as
+the geometric reference and manually annotated section requirements as section
+GT. Full native feature extraction and dimensional-chain reconstruction are no
+longer required before running this route. Historical native-pairing and GT
+extraction flags still describe the evidence actually collected; this document
+change does not alter those flags or upgrade case readiness.
 
 Before declaring a case ready, compare the selected STEP with the final geometry in the selected SLDPRT or independently verified CQ program. Check units, coordinate frame, solids, dimensions, and shape; verify that the native file contains useful modeling features rather than only an imported body.
 
@@ -25,10 +32,24 @@ Do not infer readiness from a source folder named `verified` or `gt`. In particu
 
 ## Planned evaluation boundary
 
-The future evaluator exposes only the selected STEP and public tool instructions. Native CAD, parameter GT, and source notes remain unavailable to the tested model.
+The drawing AI receives the selected standardized STEP and public tool instructions.
+Neutral geometric references may be computed from that exact STEP. Native CAD,
+manual section targets and expert drawing references remain unavailable to it.
 
-The planned submission contains a generated drawing, recognized features or an equivalent CQ construction, and machine-readable view and annotation records. Prediction IDs are matched to GT by geometry and normalized semantics; hidden GT IDs are not supplied as answers.
+The current submission is a DXF drawing and JSON describing its actual sections
+and their view/drawing associations. Recognition of holes and other features is
+assessed through the resulting drawing, reconstructed geometry and section
+expression; a separate feature-tree or dimension-chain JSON is not required.
 
-The generated drawing and its structured records must agree. Parameters present only in prediction JSON or known only to the geometry backend do not count as information expressed on the drawing.
+An independent verification AI reconstructs STEP from the submitted DXF only.
+The original STEP, reference STEP, submission JSON and private GT are not mounted
+in its workspace. A script compares the reconstructed and reference solids using
+volume IoU. Other checks inspect section positions and actual DXF annotation
+collisions, with weights and acceptance policies still to be calibrated.
 
-The target input, GT, and submission layout is specified in [INPUT_OUTPUT.md](INPUT_OUTPUT.md), with a [worked JSON example](../examples/dimension_chain/README.md) and a [relation-search algorithm](RELATION_SEARCH.md). The full production schemas are to be frozen during implementation. The source metadata schema shipped here is not a claim that a model-submission verifier already exists.
+The drawing and its section records must agree; a section declared only in JSON
+does not prove it is present on the drawing. The target boundaries are specified
+in [INPUT_OUTPUT.md](INPUT_OUTPUT.md). Historical [dimension-chain examples](../examples/dimension_chain/README.md)
+and [relation-search algorithms](RELATION_SEARCH.md) are retained for reference.
+Production schemas remain unfrozen. The source metadata schema does not establish
+that a complete model-submission scorer already exists.
