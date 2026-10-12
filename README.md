@@ -1,66 +1,65 @@
 # BenchCAD 3D2D
 
+**English** | [简体中文](README.zh-CN.md)
+
 **Engineering drawings from STEP, evaluated through independent AI reconstruction and section checks.**
 
-模型输入标准化 STEP，输出 DXF 工程图和剖切 JSON。图纸需要准确表达孔、台阶、腔体等特征以及必要的专业剖视。当前方案放弃尺寸链验证，采用独立 AI 仅根据 DXF 重构 STEP，再与参考几何比较体积 IoU；同时检查关键轴线的剖切位置、DXF 标注碰撞和视图冗余。
+The evaluated AI receives a standardized STEP part and produces a DXF engineering drawing and a section-description JSON file. The drawing must accurately communicate holes, steps, cavities, and other features, with appropriate section views. The current design replaces dimension-chain verification with independent AI reconstruction from DXF, followed by volumetric IoU against reference geometry. It also checks section positions relative to critical axes, annotation collisions, and redundant views.
 
-**[当前方案](docs/DESIGN.md) · [输入输出约定](docs/INPUT_OUTPUT.md) · [剖切标注工作台](https://2d.cuptlab.site)**
+**[Evaluation design](docs/DESIGN.md) · [Input/output contract](docs/INPUT_OUTPUT.md) · [Section annotation workbench](https://2d.cuptlab.site)**
 
-本次为方案文档更新。AI 重构校准、图纸与 JSON 的证据匹配、完整分项报告和总分规则仍待接通或冻结。标注网页可用不代表 benchmark 已完成评分。
+The annotation workbench is available. Reconstruction calibration, evidence matching between the drawing and JSON, complete component reports, and the overall scoring rules still require integration or finalization. The full benchmark scoring pipeline is not yet ready.
 
-## 评测流程
+## Evaluation workflow
 
-```text
-STEP → 出图 AI → DXF + JSON
-                   │      └→ 人工剖切 GT 匹配
-                   ├→ 标注碰撞检查
-                   └→ 独立验证 AI → 重构 STEP → 体积 IoU
-```
+![Proposed evaluation workflow: independent DXF reconstruction and volumetric IoU, annotation collision checks, and section-position checks against human annotations.](docs/assets/evaluation-workflow.en.svg)
 
-验证 AI 的输入仅为 DXF 与通用说明，原 STEP、人工 GT 和提交 JSON 不挂载给它。两个 AI 的角色和文件访问边界分开。
+*Proposed evaluation workflow; the complete scoring pipeline is not yet integrated.*
 
-| 分项 | 评价内容 |
+The independent reconstruction AI receives only the DXF and general instructions. It has no access to the original STEP, human ground truth (GT), or the submitted JSON. The two AI roles have separate file-access boundaries. Section checks use the submitted JSON, human section GT, and evidence of section lines actually drawn in the DXF.
+
+| Component | Evaluation target |
 | --- | --- |
-| 几何恢复 | 重构 STEP 与参考 STEP 的体积 IoU，保留真实尺度 |
-| 专业剖切 | 沿轴剖包含关键轴，或横切经过规定轴向位置；角度可不作要求 |
-| 图纸质量 | 实际 DXF 的标注碰撞／遮挡和视图冗余 |
+| Geometry recovery | Volumetric IoU between reconstructed and reference STEP solids, preserving absolute scale |
+| Section quality | A longitudinal section contains a critical axis, or a transverse section passes through a specified axial position; angle constraints may be omitted |
+| Drawing quality | Annotation collisions/occlusion and view redundancy in the actual DXF |
 
-先用专家 DXF 校准验证 AI 的重构可靠性。推荐剖切奖励、必要剖切扣分、容差和总分权重尚未冻结；旧 40/35/20/5 权重不用于当前路线。
+First, calibrate the reconstruction AI using trusted expert DXF drawings. Rewards for recommended sections, penalties for missing required sections, tolerances, and overall weights have not been finalized. The historical 40/35/20/5 weights do not apply to the current approach.
 
-## 标注工作台
+## Annotation workbench
 
-[2d.cuptlab.site](https://2d.cuptlab.site) 提供 STEP 预览、标准视角、轴线吸附高亮、剖切位置与可选角度标注，以及精简 JSON 导入／导出。姓名在同一浏览器内记忆，可通过“下一个 case”连续标注；上传新 STEP 的网页入口和后台接口已上线。
+[2d.cuptlab.site](https://2d.cuptlab.site) provides STEP previews, standard views, axis snapping and hover highlighting, section-position and optional angle annotation, and compact JSON import/export. It remembers the annotator's name in the same browser and offers a “Next case” button. A STEP-upload page and backend API are deployed.
 
-工作台包含本地七个案例的模型页面，其中 Case 84 未识别到可选轴线，当前仅支持查看模型。此部署状态与本仓库的源案例注册状态分开。网页实现及 Case 11 的实验材料不包含在本次文档 PR 中。
+The workbench hosts model pages for seven local cases. Case 84 has no detected selectable axes and currently supports model viewing only. Hosted cases and repository source registration are tracked separately. The workbench implementation and Case 11 experiment are not yet included in the repository's default branch.
 
-## 仓库内容和状态
+## Repository contents and status
 
-当前主分支登记六个 T1 源案例：**01、13、15、84、86、88**，共十六份 STEP／SLDPRT 源文件，保持原版本路径和来源记录。源文件完整性校验已提供；正式评分就绪状态见 [STATUS.md](docs/STATUS.md)。
+The default branch registers six T1 source cases: **01, 13, 15, 84, 86, and 88**, containing sixteen STEP/SLDPRT source files with their original version paths and provenance. Source integrity checks are available; see [STATUS.md](docs/STATUS.md) for scoring readiness.
 
 ```text
 cases/<case_id>/
-├── case.json          # 源文件清单、哈希和就绪状态
-└── sources/           # 原 STEP/SLDPRT 版本
+├── case.json          # Source manifest, hashes, and readiness status
+└── sources/           # Original STEP/SLDPRT versions
 
 docs/
-├── DESIGN.md          # 当前评测方案
-├── INPUT_OUTPUT.md    # 待冻结的输入、GT、提交和验证边界
-├── CASE_SPEC.md       # 已有源数据注册合同
-└── STATUS.md          # 实现状态及下一步
+├── DESIGN.md          # Current evaluation design
+├── INPUT_OUTPUT.md    # Proposed input, GT, submission, and verifier boundaries
+├── CASE_SPEC.md       # Existing source-registration contract
+└── STATUS.md          # Implementation status and next steps
 ```
 
 ```bash
 python tools/verify_sources.py
 ```
 
-该命令检查路径、格式、大小、SHA-256 和注册清单一致性，不运行 AI 重构、不验证图纸或计算模型分数。
+This command checks paths, formats, sizes, SHA-256 hashes, and registry consistency. It does not run AI reconstruction, validate drawings, or calculate model scores.
 
-## 进一步阅读
+## Further reading
 
-- [案例合同](docs/CASE_SPEC.md)
-- [贡献指南](CONTRIBUTING.md)
-- [源数据复核说明](docs/REVIEWING.md)
-- [历史尺寸链算法](docs/RELATION_SEARCH.md)
-- [历史尺寸链 JSON 示例](examples/dimension_chain/README.md)
+- [Case specification](docs/CASE_SPEC.md)
+- [Contributing](CONTRIBUTING.md)
+- [Source review guide](docs/REVIEWING.md)
+- [Historical dimension-chain algorithms](docs/RELATION_SEARCH.md)
+- [Historical dimension-chain JSON examples](examples/dimension_chain/README.md)
 
-历史尺寸链材料保留供研究和追溯，不作为当前评测路线的必需步骤。仓库组织参考 [BenchCAD 2 main](https://github.com/BenchCAD-org/benchcad-2-main)；新的三维到二维评测仍需独立校准。
+Historical dimension-chain materials remain for research and traceability; they are not required by the current evaluation approach. Repository organization draws on [BenchCAD 2 main](https://github.com/BenchCAD-org/benchcad-2-main). The new 3D-to-2D evaluation still needs independent calibration.
