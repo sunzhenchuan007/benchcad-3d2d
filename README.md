@@ -4,7 +4,7 @@
 
 **Engineering drawings from STEP, evaluated through independent AI reconstruction and section checks.**
 
-The evaluated AI receives a standardized STEP part and produces a DXF engineering drawing and a section-description JSON file. The drawing must accurately communicate holes, steps, cavities, and other features, with appropriate section views. The current design replaces dimension-chain verification with independent AI reconstruction from DXF, followed by volumetric IoU against reference geometry. It also checks section positions relative to critical axes, annotation collisions, and redundant views.
+The evaluated AI receives a standardized STEP part and submits **only a DXF engineering drawing**. The controlled CAD environment records successful operations and final snapshots; an evaluator-side script derives the actual section JSON. The drawing must accurately communicate holes, steps, cavities, and other features, with appropriate section views. The current design replaces dimension-chain verification with independent AI reconstruction from DXF, followed by volumetric IoU against reference geometry. It also checks section positions relative to critical axes, annotation collisions, and redundant views.
 
 **[Evaluation design](docs/DESIGN.md) · [Input/output contract](docs/INPUT_OUTPUT.md) · [Section annotation workbench](https://2d.cuptlab.site)**
 
@@ -16,7 +16,9 @@ The annotation workbench is available. Reconstruction calibration, evidence matc
 
 *Proposed evaluation workflow; the complete scoring pipeline is not yet integrated.*
 
-The independent reconstruction AI receives only the DXF and general instructions. It has no access to the original STEP, human ground truth (GT), or the submitted JSON. The two AI roles have separate file-access boundaries. Section checks use the submitted JSON, human section GT, and evidence of section lines actually drawn in the DXF.
+The independent reconstruction AI receives only the DXF and general instructions. It has no access to the original STEP, human ground truth (GT), operation logs, or derived JSON. The two AI roles have separate file-access boundaries. Section checks compare script-derived actual sections with human GT and independently check the DXF evidence. AI-authored claims are not trusted operation logs.
+
+The [operation-log report and extension interface](docs/OPERATION_LOG_DERIVATION.md) provides a bounded JSONL reader, state reducer and CLI. Real CAD adapters, final-state capture, GT matching and DXF evidence checks remain pending. Parsing success is not a passing drawing score. See [issue #14](https://github.com/sunzhenchuan007/benchcad-3d2d/issues/14).
 
 | Component | Evaluation target |
 | --- | --- |
@@ -56,6 +58,7 @@ This command checks paths, formats, sizes, SHA-256 hashes, and registry consiste
 
 ## Further reading
 
+- [Operation-log interface and GT compatibility](docs/OPERATION_LOG_DERIVATION.md)
 - [Case specification](docs/CASE_SPEC.md)
 - [Contributing](CONTRIBUTING.md)
 - [Source review guide](docs/REVIEWING.md)

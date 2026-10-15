@@ -4,7 +4,7 @@
 
 **从 STEP 生成工程图，通过独立 AI 重构和剖切检查进行评测。**
 
-被评测 AI 输入标准化 STEP 零件，输出 DXF 工程图和剖切描述 JSON。图纸需要准确表达孔、台阶、腔体等特征以及必要的专业剖视。当前方案放弃尺寸链验证，采用独立 AI 仅根据 DXF 重构 STEP，再与参考几何比较体积 IoU；同时检查关键轴线的剖切位置、DXF 标注碰撞和视图冗余。
+被评测 AI 输入标准化 STEP 零件，**仅提交 DXF 工程图**。受控 CAD 环境记录成功操作与最终快照，由评测端脚本派生实际剖切 JSON。图纸需要准确表达孔、台阶、腔体等特征以及必要的专业剖视。当前方案放弃尺寸链验证，采用独立 AI 仅根据 DXF 重构 STEP，再与参考几何比较体积 IoU；同时检查关键轴线的剖切位置、DXF 标注碰撞和视图冗余。
 
 **[当前方案](docs/DESIGN.md) · [输入输出约定](docs/INPUT_OUTPUT.md) · [剖切标注工作台](https://2d.cuptlab.site)**
 
@@ -12,11 +12,13 @@
 
 ## 评测流程
 
-![拟定评测流程：独立 AI 从 DXF 重构并比较体积 IoU，检查标注碰撞，并依据人工标注检查剖切位置。](docs/assets/evaluation-workflow.zh.png)
+![拟定评测流程：独立 AI 从 DXF 重构并比较体积 IoU，检查标注碰撞，并依据人工标注检查剖切位置。](docs/assets/evaluation-workflow.zh.svg)
 
 *当前拟定评测流程，完整评分链路尚未接通。*
 
-独立验证 AI 的输入仅为 DXF 与通用说明，原 STEP、人工真值（GT）和提交 JSON 不挂载给它。两个 AI 的角色和文件访问边界分开。剖切检查结合提交 JSON、人工剖切 GT，以及 DXF 中实际绘出的剖切线证据。
+独立验证 AI 的输入仅为 DXF 与通用说明，原 STEP、人工真值（GT）、操作日志和派生 JSON 不挂载给它。两个 AI 的角色和文件访问边界分开。剖切检查将脚本派生的实际状态与人工要求匹配，同时核验实际 DXF 证据；AI 自述不能代替可信操作记录。
+
+[日志派生报告与开放接口](docs/OPERATION_LOG_DERIVATION.md)提供可运行的流式 JSONL 读取、状态归约和 CLI。真实 CAD 后端适配、最终快照采集、GT 匹配与 DXF 证据检查仍待接入，解析成功不表示图纸评分通过。跟踪见 [issue #14](https://github.com/sunzhenchuan007/benchcad-3d2d/issues/14)。
 
 | 分项 | 评价内容 |
 | --- | --- |
@@ -56,6 +58,7 @@ python tools/verify_sources.py
 
 ## 进一步阅读
 
+- [日志派生接口与 GT 兼容报告](docs/OPERATION_LOG_DERIVATION.md)
 - [案例合同](docs/CASE_SPEC.md)
 - [贡献指南](CONTRIBUTING.md)
 - [源数据复核说明](docs/REVIEWING.md)
