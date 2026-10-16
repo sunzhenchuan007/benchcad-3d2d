@@ -2,6 +2,10 @@
 
 关联 [issue #14](https://github.com/sunzhenchuan007/benchcad-3d2d/issues/14)。这是首版可测试接口，不是完整 CAD 日志识别器或评分器。
 
+## 与当前本地试验的关系
+
+更新说明（2026-10-16）：本页描述公共日志消费者。SolidWorks 本地试验实际要求 AI 保存原生工程图，由控制程序重开并生成最终 DXF、PNG 和 JSON；它直接读取原生状态，尚未接入本页 EventAdapter。重建 AI 还接收最终 DXF 渲染的 PNG。下方 DXF-only 指二维评测产物，不表示当前 SolidWorks 收卷只接受裸 DXF。专家 DXF 重建校正暂缓，IoU 使用归一化旋转／镜像最大值，见 [当前设计](DESIGN.md)。
+
 ## 流程变更
 
 AI 的正式制图提交只有 `drawing.dxf`。AI 不再自行撰写用于剖切评分的 JSON。评测环境在 CAD 工具执行时记录结果，后台脚本从日志派生实际视图与剖切记录，再与人工 GT 做几何约束匹配。

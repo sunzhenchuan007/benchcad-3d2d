@@ -6,3 +6,6 @@ outputs/
 reports/
 *.zip
 .DS_Store
+
+# Local per-case/backend/run artifacts; publish curated summaries only.
+runs/

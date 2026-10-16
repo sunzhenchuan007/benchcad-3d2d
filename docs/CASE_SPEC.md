@@ -22,9 +22,9 @@ longer required before running this route. Historical native-pairing and GT
 extraction flags still describe the evidence actually collected; this document
 change does not alter those flags or upgrade case readiness.
 
-Before declaring a case ready, compare the selected STEP with the final geometry in the selected SLDPRT or independently verified CQ program. Check units, coordinate frame, solids, dimensions, and shape; verify that the native file contains useful modeling features rather than only an imported body.
+For the historical native-pairing route, compare the selected STEP with the final geometry in the selected SLDPRT or independently verified CQ program. Check units, coordinate frame, solids, dimensions, and shape; verify that the native file contains useful modeling features rather than only an imported body.
 
-Extract a normalized feature representation, geometry references, continuous variables, discrete structure, and parameter dependencies. Filter suppressed and non-contributing history. Review the resulting independent parameter set against the final solid.
+That historical route extracts a normalized feature representation, geometry references, continuous variables, discrete structure, and parameter dependencies. Filter suppressed and non-contributing history. Review the resulting independent parameter set against the final solid.
 
 CQ is an alternative construction representation, not a guarantee of an identical feature history. No CQ reconstructions are included in the initial source import. A future extension adding CQ sources must revise and version the source contract and integrity checker together.
 
@@ -36,17 +36,14 @@ The drawing AI receives the selected standardized STEP and public tool instructi
 Neutral geometric references may be computed from that exact STEP. Native CAD,
 manual section targets and expert drawing references remain unavailable to it.
 
-The AI submits only a DXF drawing. A trusted CAD backend records successful
-operations and final snapshots; evaluator-side code derives actual section JSON
-and its drawing associations. The log-consumer interface is implemented; real
-CAD adapters and final-state capture remain pending. Recognition of holes and other features is
+The evaluated drawing artifact is DXF. In the local SolidWorks pilot, the AI submits a native drawing and a submit marker; the controller reopens it and exports final DXF, PNG and native-derived section JSON. The public log-consumer interface is implemented; its real CAD adapters remain pending. FreeCAD is a planned second backend. Recognition of holes and other features is
 assessed through the resulting drawing, reconstructed geometry and section
 expression; a separate feature-tree or dimension-chain JSON is not required.
 
-An independent verification AI reconstructs STEP from the submitted DXF only.
+An independent verification AI reconstructs STEP from the final DXF and a PNG rendered from that exact DXF.
 The original STEP, reference STEP, operation logs, derived JSON and private GT are not mounted
 in its workspace. A script compares the reconstructed and reference solids using
-volume IoU. Other checks inspect section positions and actual DXF annotation
+the versioned normalized rotation/reflection-max IoU policy in [DESIGN.md](DESIGN.md). Expert-drawing reconstruction correction is deferred. Other checks inspect section positions and actual DXF annotation
 collisions, with weights and acceptance policies still to be calibrated.
 
 The drawing and its derived section records must agree; a section declared only in JSON

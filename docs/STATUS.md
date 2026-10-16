@@ -1,45 +1,46 @@
-# Status
+# Implementation status
 
-## Current direction
+Updated 2026-10-16. **One repository, two CAD backends. SolidWorks has a local Case 13 pipeline result; FreeCAD is planned. Neither is a published, fully portable and calibrated benchmark runner.**
 
-The current [design](DESIGN.md) accepts standardized STEP input and DXF-only AI submission. Trusted CAD operation logs and final snapshots supply evaluator-derived section JSON. Dimensional-chain verification is retired from this evaluation route. An independent AI reconstructs STEP from DXF only; geometry IoU, section-position requirements and drawing-quality checks provide the proposed evaluation components. Weights and failure policies remain unfrozen.
+## In the repository
 
-## Published in this repository
+- Six registered T1 source cases: 01, 13, 15, 84, 86, 88; sixteen STEP/SLDPRT assets.
+- Source path, size and SHA-256 checks; source readiness unchanged by this update.
+- Bounded operation-log consumer and synthetic protocol tests, merged in PR #15. No vendor adapter, CAD execution or geometry scoring in that consumer.
+- Shared architecture, input/output contract, backend documentation, local pilot report, and current metric policy.
+- Historical dimension-chain materials retained for traceability, not used by the active evaluation route.
 
-- Six registered source cases: 01, 13, 15, 84, 86, and 88.
-- Sixteen STEP/SLDPRT assets with original version paths and source records.
-- File-size and SHA-256 integrity verification.
-- Updated design, bilingual workflow diagrams and target input/output boundaries.
-- A stdlib-only bounded normalized-JSONL adapter, state reducer, CLI and synthetic protocol tests; see the [operation-log report](OPERATION_LOG_DERIVATION.md).
-- CAD vendor adapters, trusted capture and semantic GT/DXF matching are not included.
-- Historical dimension-chain specification and synthetic JSON example, retained for reference.
+## Local evidence versus integrated implementation
 
-| Case | Files | Source state | Geometry pairing | GT extraction |
-| --- | ---: | --- | --- | --- |
-| 01 | 2 | Collected | Pending | Pending |
-| 13 | 3 | Collected | Pending | Pending |
-| 15 | 2 | Collected | Pending | Pending |
-| 84 | 3 | Collected | Pending | Pending |
-| 86 | 2 | Collected | Pending | Pending |
-| 88 | 4 | Collected | Pending | Pending |
+| Component | Evidence / limitation |
+|---|---|
+| SolidWorks + Codex CLI | One local Case 13 drawing → DXF → independent reconstruction → IoU trial completed |
+| Portable runner | Local controller and CAD scripts have not been migrated into the public backend directories |
+| Geometry metric | Local normalized 24 rotations + 24 reflected orientations; selected IoU 0.9996046703, reflection used |
+| Absolute dimensions | Input is not rescaled; scoring normalizes size and reports size diagnostics separately |
+| Section JSON | Local script reads final native drawing; not AI-authored; not yet integrated with the public log consumer |
+| Section score | Case 13 lacks approved GT; not scored |
+| Collision score | 12 approximate text-bounds candidates in Case 13; no complete penalty |
+| View efficiency | Category and reference-count policy documented; full scorer pending |
+| Isolation | Some local boundaries tested; all tool/file access paths not fully accepted |
+| FreeCAD | Documentation and acceptance checklist only; no end-to-end run claimed |
+| Overall score | Not computed; weights and failure policies unfrozen |
+| Expert reconstruction baseline | Deferred; no expert DXF → STEP baseline or denominator correction |
 
-This documentation change does not modify source assets, case manifests or registry readiness. Development work on other branches is separate from evidence published on the default branch.
+The pilot report is a checked reading edition of local records, not a public reproducibility package. Raw artifacts, logs and machine settings are not included. Its results do not promote the six source manifests to scoring-ready status. A self-comparison IoU of 1 is an evaluator check, not an AI result.
 
-## Deployed annotation workbench and local development
+## Cases and annotation workbench
 
-The [section workbench](https://2d.cuptlab.site) is online with seven STEP model pages (1, 11, 13, 15, 84, 86, 88). It supports standard views, axis snapping/highlighting, axial/transverse position rules, optional plane-angle requirements and compact draft JSON export/import. It remembers the annotator in the current browser and offers next-case navigation. STEP uploads are processed through an authenticated upload endpoint. Browser annotation records remain local until exported.
+The source registry still contains six cases. A separate local selection names Drive T1 01–10 for the next batch; that is not ten completed or registered runs. Case 11 remains outside this publication.
 
-Case 84 has no detected selectable rotational axes and currently supports model viewing rather than axis annotation. Case 11 is a separate experiment and is not added to the six-case source registry by this PR.
+The existing section workbench link is [2d.cuptlab.site](https://2d.cuptlab.site). Earlier work documented seven model pages, axis selection, compact GT drafts, annotator persistence and next-case navigation; Case 84 had no selectable detected axes. Its live deployment was not rechecked or modified in this update. Draft export is not GT acceptance, and UI ability does not establish backend scoring capability.
 
-The workbench and upload flow have browser QA evidence; local STEP-IoU development components have geometry checks. Their implementation files, private GT and deployment credentials are outside this focused interface change. A STEP compared with itself yielding IoU 1 is a scorer self-check, not an AI reconstruction result.
+## Next work
 
-## Pending for the new evaluation route
+1. Port the local SolidWorks controller with portable configuration and full access-boundary validation.
+2. Implement and test the FreeCAD shared subset and final-state adapter.
+3. Connect backend final state to the versioned event/manifest contract and real DXF evidence checks.
+4. Approve GT, implement collision/view-efficiency scoring and controlled-defect checks.
+5. Freeze reconstruction sampling, budgets, failure handling and score composition before leaderboard claims.
 
-1. Integrate the first trusted CAD backend adapter and final snapshot capture; freeze supported section types and actual DXF evidence bindings.
-2. Migrate and approve GT versions and matching policy. Local experimental draft v5 now has required/optional/one_of, view categories and reference schemes; these local/private files are not published here. Optional does not yet define a recommendation reward. The deployed schema was not reverified in this change.
-3. Execute and calibrate DXF-only AI reconstruction on trusted expert drawings with actual file isolation.
-4. Connect reconstruction output to reproducible IoU reports and define alignment, resolution and failure handling.
-5. Complete general DXF annotation collision checks, derived-section-JSON-to-drawing consistency and view-redundancy reports.
-6. Calibrate penalties and weights with controlled drawing defects, then validate on independent cases.
-
-No end-to-end model scores, calibrated overall metric or leaderboard results are claimed. CI source checks validate packaging; synthetic protocol tests validate log handling. Neither proves CAD geometry, reconstruction reliability or drawing quality.
+See [decisions and PR disposition](DECISIONS.md), [architecture](ARCHITECTURE.md), and [local pilot report](experiments/case013-solidworks-codex.md).

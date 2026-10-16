@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="920" viewBox="0 0 1080 920" role="img" aria-labelledby="title desc">
+<title id="title">BenchCAD 3D→2D：同仓库、双 CAD 后端</title><desc id="desc">Current workflow; local SolidWorks pilot versus planned FreeCAD backend. Expert reconstruction correction deferred.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#46617e"/></marker></defs>
+<rect width="1080" height="920" fill="#f4f7fa"/>
+<text x="40" y="52" font-family="Arial,Microsoft YaHei,sans-serif" font-size="26" font-weight="bold" fill="#17324f">BenchCAD 3D→2D：同仓库、双 CAD 后端</text>
+<rect x="40" y="100" width="590" height="75" rx="10" fill="white" stroke="#9fb2c8"/>
+<text x="58" y="130" font-family="Arial,Microsoft YaHei,sans-serif" font-size="18" fill="#17324f">STEP + 任务、公开工具、预算</text>
+<text x="58" y="155" font-family="Arial,Microsoft YaHei,sans-serif" font-size="15" fill="#17324f">出图 AI 可读取几何；GT 不提供</text>
+<rect x="40" y="220" width="590" height="75" rx="10" fill="white" stroke="#9fb2c8"/>
+<text x="58" y="250" font-family="Arial,Microsoft YaHei,sans-serif" font-size="18" fill="#17324f">出图 AI → CAD 工具 → 自查预览</text>
+<text x="58" y="275" font-family="Arial,Microsoft YaHei,sans-serif" font-size="15" fill="#17324f">SolidWorks 本地已测；FreeCAD 待实现</text>
+<rect x="40" y="340" width="590" height="100" rx="10" fill="white" stroke="#9fb2c8"/>
+<text x="58" y="370" font-family="Arial,Microsoft YaHei,sans-serif" font-size="18" fill="#17324f">控制程序收卷并重开原生工程图</text>
+<text x="58" y="395" font-family="Arial,Microsoft YaHei,sans-serif" font-size="15" fill="#17324f">导出最终 DXF、渲染 PNG、提取状态 JSON</text>
+<text x="58" y="420" font-family="Arial,Microsoft YaHei,sans-serif" font-size="15" fill="#17324f">JSON 不由 AI 自报；公共日志接口待接后端</text>
+<rect x="40" y="500" width="590" height="90" rx="10" fill="white" stroke="#9fb2c8"/>
+<text x="58" y="530" font-family="Arial,Microsoft YaHei,sans-serif" font-size="18" fill="#17324f">独立重建 AI：仅 DXF + 其 PNG → STEP</text>
+<text x="58" y="555" font-family="Arial,Microsoft YaHei,sans-serif" font-size="15" fill="#17324f">不读取原 STEP、GT、原生文件或出图日志</text>
+<rect x="40" y="650" width="590" height="100" rx="10" fill="white" stroke="#9fb2c8"/>
+<text x="58" y="680" font-family="Arial,Microsoft YaHei,sans-serif" font-size="18" fill="#17324f">评测器：参考 STEP 对比重建 STEP</text>
+<text x="58" y="705" font-family="Arial,Microsoft YaHei,sans-serif" font-size="15" fill="#17324f">居中、等比例归一化；旋转与镜像取较高 IoU</text>
+<text x="58" y="730" font-family="Arial,Microsoft YaHei,sans-serif" font-size="15" fill="#17324f">镜像更高时报告两值并标记</text>
+<rect x="680" y="130" width="350" height="80" rx="10" fill="white" stroke="#9fb2c8"/>
+<text x="698" y="160" font-family="Arial,Microsoft YaHei,sans-serif" font-size="18" fill="#17324f">专家剖切 GT</text>
+<text x="698" y="185" font-family="Arial,Microsoft YaHei,sans-serif" font-size="15" fill="#17324f">批准后才能用于评分</text>
+<rect x="680" y="340" width="350" height="100" rx="10" fill="white" stroke="#9fb2c8"/>
+<text x="698" y="370" font-family="Arial,Microsoft YaHei,sans-serif" font-size="18" fill="#17324f">剖切位置 + DXF 实际证据</text>
+<text x="698" y="395" font-family="Arial,Microsoft YaHei,sans-serif" font-size="15" fill="#17324f">Case 13 缺批准 GT，未评分</text>
+<rect x="680" y="500" width="350" height="90" rx="10" fill="white" stroke="#9fb2c8"/>
+<text x="698" y="530" font-family="Arial,Microsoft YaHei,sans-serif" font-size="18" fill="#17324f">DXF 碰撞与视图数</text>
+<text x="698" y="555" font-family="Arial,Microsoft YaHei,sans-serif" font-size="15" fill="#17324f">完整扣分仍待实现</text>
+<path d="M335 175 V220" fill="none" stroke="#46617e" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M335 295 V340" fill="none" stroke="#46617e" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M335 440 V500" fill="none" stroke="#46617e" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M335 590 V650" fill="none" stroke="#46617e" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M855 210 V340" fill="none" stroke="#46617e" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M630 390 H680" fill="none" stroke="#46617e" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M630 415 H652 V545 H680" fill="none" stroke="#46617e" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="40" y="825" font-family="Arial,Microsoft YaHei,sans-serif" font-size="18" fill="#17324f">专家 DXF → AI STEP 的基准校正暂缓；不除以专家重建 IoU。</text>
+<text x="40" y="857" font-family="Arial,Microsoft YaHei,sans-serif" font-size="18" fill="#17324f">这是流程与分项状态说明，不是完整 benchmark 总分。</text>
+</svg>
