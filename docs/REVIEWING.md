@@ -2,25 +2,40 @@
 
 ## Source changes
 
-- [ ] The case number and source links identify the intended original.
-- [ ] Only STEP and SLDPRT assets are included in the source package.
-- [ ] File paths, sizes, and hashes pass `python tools/verify_sources.py`.
-- [ ] Alternative versions are preserved or an intentional replacement is explained.
-- [ ] Readiness fields describe observed evidence, not folder names.
+- [ ] Case number and source links identify the intended original.
+- [ ] Source package still follows the versioned STEP/SLDPRT contract.
+- [ ] Paths, sizes and hashes pass tools/verify_sources.py.
+- [ ] Alternative versions and provenance are preserved.
+- [ ] Readiness reflects evidence; no automatic upgrade from a folder name or pilot result.
 
-## Required before GT readiness
+## Current task and GT
 
-- [ ] The chosen STEP and native model describe the same geometry and units.
-- [ ] The native feature tree or CQ construction provides meaningful parameters.
-- [ ] Suppressed, redundant, and non-contributing history is excluded appropriately.
-- [ ] Continuous independent variables and discrete structures are distinguished.
-- [ ] Feature references and dependencies have been checked against the final solid.
+- [ ] Input STEP hash, units and coordinate frame are fixed; any neutral cache is declared.
+- [ ] Section GT is approved and bound to the correct geometry; draft annotations are not treated as final.
+- [ ] Required, optional and alternative rules are explicit; tolerances and angle requirements are versioned.
+- [ ] GT, native design history and evaluator outputs are not exposed to the drawing AI.
+- [ ] Reconstruction AI sees only final DXF, its rendered PNG and general instructions.
+- [ ] Full dimension chains and expert-DXF reconstruction baselines are not reintroduced as mandatory tasks.
 
-## Verifier changes
+## CAD backend and submission
 
-- [ ] Equivalent dimension chains and constructions receive equivalent treatment.
-- [ ] Missing depths, wrong termination conditions, and wrong geometry attachments fail appropriately.
-- [ ] Hidden GT knowledge is never counted as information on the submitted drawing.
-- [ ] Rank checks are not treated as proof of global uniqueness.
-- [ ] Drawing output and machine-readable annotations are consistent.
-- [ ] Unsupported items, aggregate scores, and whole-drawing completeness are reported separately.
+- [ ] Native save/reopen, DXF export, preview and state extraction are distinguished by producer and stage.
+- [ ] Derived state is bound to the final native/export version; AI claims are not accepted as execution evidence.
+- [ ] Actual DXF evidence is checked independently; hashes alone do not prove drawing correctness.
+- [ ] Unsupported complex sections fail explicitly rather than being treated as ordinary full sections.
+- [ ] Local pilot evidence, published code, planned FreeCAD capability and complete acceptance are labeled separately.
+- [ ] Backend dependencies and installation do not require installing the other CAD backend.
+
+## Evaluation and reporting
+
+- [ ] Metric version and allowed normalization/rotation/reflection policy are recorded.
+- [ ] Mirror-inclusive selected IoU is distinguished from rotation-only IoU and absolute-size diagnostics.
+- [ ] Identical-geometry controls are not reported as AI scores; diagnostic corrections are not new AI attempts.
+- [ ] Collision candidates are not automatically counted as confirmed violations.
+- [ ] Equivalent valid layouts are accepted; fewer views do not excuse missing required content.
+- [ ] Missing GT, invalid geometry, unsupported functionality, timeouts and infrastructure failures are explicit.
+- [ ] Time, token, cached input, cost assumptions and attempt counts use consistent units without double counting.
+- [ ] No total-score or leaderboard claim is made without calibrated complete components.
+- [ ] Raw local logs, host configuration and private material are excluded from publication.
+
+Historical feature-tree and dimension-chain validation has separate research value, but is not this checklist's active scoring route.

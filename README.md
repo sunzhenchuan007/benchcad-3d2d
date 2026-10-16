@@ -2,67 +2,61 @@
 
 **English** | [简体中文](README.zh-CN.md)
 
-**Engineering drawings from STEP, evaluated through independent AI reconstruction and section checks.**
+**One benchmark, two CAD backends: SolidWorks and FreeCAD.** An AI reads STEP and creates an engineering drawing. An independent AI reconstructs STEP from the final DXF and its rendered preview; the evaluator compares geometry and separately checks sections and drawing quality.
 
-The evaluated AI receives a standardized STEP part and submits **only a DXF engineering drawing**. The controlled CAD environment records successful operations and final snapshots; an evaluator-side script derives the actual section JSON. The drawing must accurately communicate holes, steps, cavities, and other features, with appropriate section views. The current design replaces dimension-chain verification with independent AI reconstruction from DXF, followed by volumetric IoU against reference geometry. It also checks section positions relative to critical axes, annotation collisions, and redundant views.
+| Backend | Status | Start here |
+|---|---|---|
+| With SolidWorks | Local Windows + Codex CLI Case 13 pipeline completed; portable runner not yet published | [Backend](backends/solidworks/README.md) · [Detailed agent guide](docs/AGENT_SOLIDWORKS_CODEX.md) |
+| With FreeCAD | Planned; no end-to-end benchmark run claimed | [Backend and acceptance checklist](backends/freecad/README.md) |
 
-**[Evaluation design](docs/DESIGN.md) · [Input/output contract](docs/INPUT_OUTPUT.md) · [Section annotation workbench](https://2d.cuptlab.site)**
+The backends share cases, task rules and evaluation policy, while keeping CAD tools, native formats and installation separate. Codex CLI is the agent runtime and can be used with either backend. Installing one backend does not require the other.
 
-The annotation workbench is available. Reconstruction calibration, evidence matching between the drawing and JSON, complete component reports, and the overall scoring rules still require integration or finalization. The full benchmark scoring pipeline is not yet ready.
+## Workflow and current decisions
 
-## Evaluation workflow
+![Current workflow and implementation boundaries](docs/assets/current-workflow.en.svg)
 
-![Proposed evaluation workflow: independent DXF reconstruction and volumetric IoU, annotation collision checks, and section-position checks against human annotations.](docs/assets/evaluation-workflow.en.svg)
+In the local SolidWorks pilot, the drawing AI saves a native drawing and a submit marker. After CLI exit, the controller reopens the drawing, exports the final DXF, extracts actual view/section JSON, and renders the DXF to PNG. The reconstruction AI receives only that DXF, PNG and general instructions, with no source STEP, native CAD, GT, drawing logs or derived JSON.
 
-*Proposed evaluation workflow; the complete scoring pipeline is not yet integrated.*
+- **No AI-authored section-score JSON:** use final CAD state / controlled operation records. The native extractor and public log-consumer interface are not yet integrated.
+- **Geometry policy:** center and uniformly normalize each model, search 24 proper rotations and 24 reflected orientations, then use the higher IoU. Report both scores and a reflection flag only when reflection improves the score. Absolute-size diagnostics remain separate.
+- **Expert baseline deferred:** do not reconstruct expert DXF for a baseline STEP and do not divide by expert reconstruction IoU.
+- **No dimension-chain verifier in the active route.** Section evidence, full collision penalties, view-efficiency scoring and overall-score calibration remain incomplete.
 
-The independent reconstruction AI receives only the DXF and general instructions. It has no access to the original STEP, human ground truth (GT), operation logs, or derived JSON. The two AI roles have separate file-access boundaries. Section checks compare script-derived actual sections with human GT and independently check the DXF evidence. AI-authored claims are not trusted operation logs.
+## Local pilot evidence
 
-The [operation-log report and extension interface](docs/OPERATION_LOG_DERIVATION.md) provides a bounded JSONL reader, state reducer and CLI. Real CAD adapters, final-state capture, GT matching and DXF evidence checks remain pending. Parsing success is not a passing drawing score. See [issue #14](https://github.com/sunzhenchuan007/benchcad-3d2d/issues/14).
+Case 13 used SolidWorks 2023 and Codex CLI 0.163.0 with `gpt-6.1-sol / high`. Rotation-only IoU was **0.4848302861**; the selected reflected value is **0.9996046703**. The two effective AI stages took **34 min 3.5 s**, excluding setup and evaluation. This is a local pipeline trial, not a calibrated benchmark total or leaderboard result.
 
-| Component | Evaluation target |
-| --- | --- |
-| Geometry recovery | Volumetric IoU between reconstructed and reference STEP solids, preserving absolute scale |
-| Section quality | A longitudinal section contains a critical axis, or a transverse section passes through a specified axial position; angle constraints may be omitted |
-| Drawing quality | Annotation collisions/occlusion and view redundancy in the actual DXF |
+[Report](docs/experiments/case013-solidworks-codex.md) · [Portable result summary](docs/experiments/case013-summary.json) · [Known gaps](docs/STATUS.md)
 
-First, calibrate the reconstruction AI using trusted expert DXF drawings. Rewards for recommended sections, penalties for missing required sections, tolerances, and overall weights have not been finalized. The historical 40/35/20/5 weights do not apply to the current approach.
-
-## Annotation workbench
-
-[2d.cuptlab.site](https://2d.cuptlab.site) provides STEP previews, standard views, axis snapping and hover highlighting, section-position and optional angle annotation, and compact JSON import/export. It remembers the annotator's name in the same browser and offers a “Next case” button. A STEP-upload page and backend API are deployed.
-
-The workbench hosts model pages for seven local cases. Case 84 has no detected selectable axes and currently supports model viewing only. Hosted cases and repository source registration are tracked separately. The workbench implementation and Case 11 experiment are not yet included in the repository's default branch.
-
-## Repository contents and status
-
-The default branch registers six T1 source cases: **01, 13, 15, 84, 86, and 88**, containing sixteen STEP/SLDPRT source files with their original version paths and provenance. Source integrity checks are available; see [STATUS.md](docs/STATUS.md) for scoring readiness.
+## Repository structure
 
 ```text
-cases/<case_id>/
-├── case.json          # Source manifest, hashes, and readiness status
-└── sources/           # Original STEP/SLDPRT versions
-
-docs/
-├── DESIGN.md          # Current evaluation design
-├── INPUT_OUTPUT.md    # Proposed input, GT, submission, and verifier boundaries
-├── CASE_SPEC.md       # Existing source-registration contract
-└── STATUS.md          # Implementation status and next steps
+cases/                    Existing source manifests and STEP/SLDPRT assets
+backends/solidworks/      SolidWorks backend documentation and migration scope
+backends/freecad/         FreeCAD backend plan and acceptance checklist
+agents/codex_cli/         Agent interaction and CLI responsibilities
+runner/                   Controller responsibilities (documentation)
+evaluation/               Shared metric policy (documentation)
+tools/                    Source checks and executable log-consumer interface
+docs/                     Architecture, contracts, decisions and pilot report
 ```
+
+Backend, agent, runner and evaluation directories currently contain documentation, not installable runtimes. The default source registry still has six T1 cases: **01, 13, 15, 84, 86, 88**, with sixteen archived CAD files. Selecting T1 01–10 for a later batch does not add or validate them here.
 
 ```bash
 python tools/verify_sources.py
+python -m unittest discover -s tests -v
 ```
 
-This command checks paths, formats, sizes, SHA-256 hashes, and registry consistency. It does not run AI reconstruction, validate drawings, or calculate model scores.
+These commands check source integrity and the synthetic log protocol. They do not run CAD, an AI model, geometry scoring or full sandbox validation.
 
-## Further reading
+## Documentation
 
-- [Operation-log interface and GT compatibility](docs/OPERATION_LOG_DERIVATION.md)
-- [Case specification](docs/CASE_SPEC.md)
-- [Contributing](CONTRIBUTING.md)
-- [Source review guide](docs/REVIEWING.md)
-- [Historical dimension-chain algorithms](docs/RELATION_SEARCH.md)
-- [Historical dimension-chain JSON examples](examples/dimension_chain/README.md)
+- [Shared architecture and output layout](docs/ARCHITECTURE.md)
+- [Input, output, feedback and submission](docs/INPUT_OUTPUT.md)
+- [Evaluation design](docs/DESIGN.md) · [Confirmed decisions and PR disposition](docs/DECISIONS.md)
+- [Operation-log interface](docs/OPERATION_LOG_DERIVATION.md)
+- [Case source contract](docs/CASE_SPEC.md) · [Contributing](CONTRIBUTING.md)
+- [Section annotation workbench](https://2d.cuptlab.site) — existing deployment; not revalidated or modified in this update
 
-Historical dimension-chain materials remain for research and traceability; they are not required by the current evaluation approach. Repository organization draws on [BenchCAD 2 main](https://github.com/BenchCAD-org/benchcad-2-main). The new 3D-to-2D evaluation still needs independent calibration.
+Historical [dimension-chain material](docs/RELATION_SEARCH.md) is retained for traceability. Repository organization references [BenchCAD 2 main](https://github.com/BenchCAD-org/benchcad-2-main); the mirror-inclusive normalized metric is explicitly a local 3D2D policy, not an unchanged upstream score.

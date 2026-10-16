@@ -2,67 +2,61 @@
 
 [English](README.md) | **简体中文**
 
-**从 STEP 生成工程图，通过独立 AI 重构和剖切检查进行评测。**
+**一个 benchmark，SolidWorks 和 FreeCAD 两个 CAD 后端。** 出图 AI 读取 STEP、制作工程图；独立重建 AI 根据最终 DXF 和其预览恢复 STEP，评测器比较几何，并分别检查剖切和图纸质量。
 
-被评测 AI 输入标准化 STEP 零件，**仅提交 DXF 工程图**。受控 CAD 环境记录成功操作与最终快照，由评测端脚本派生实际剖切 JSON。图纸需要准确表达孔、台阶、腔体等特征以及必要的专业剖视。当前方案放弃尺寸链验证，采用独立 AI 仅根据 DXF 重构 STEP，再与参考几何比较体积 IoU；同时检查关键轴线的剖切位置、DXF 标注碰撞和视图冗余。
+| 版本 | 当前状态 | 从这里开始 |
+|---|---|---|
+| With SolidWorks | Windows＋Codex CLI 的 Case 13 本地流程已跑通；可移植运行代码尚未发布 | [后端说明](backends/solidworks/README.md) · [AI 如何工作](docs/AGENT_SOLIDWORKS_CODEX.md) |
+| With FreeCAD | 待实现，尚无本项目端到端试验结果 | [后端方案与验收清单](backends/freecad/README.md) |
 
-**[当前方案](docs/DESIGN.md) · [输入输出约定](docs/INPUT_OUTPUT.md) · [剖切标注工作台](https://2d.cuptlab.site)**
+两套后端共享案例、任务规则和指标，各自维护 CAD 工具、原生格式和安装环境。Codex CLI 是 Agent 运行系统，可以分别使用两套 CAD；使用一套后端不要求安装另一套。
 
-标注工作台已可用。AI 重构校准、图纸与 JSON 的证据匹配、完整分项报告和总分规则仍待接通或冻结，完整的 benchmark 评分流程尚未就绪。
+## 当前流程与决定
 
-## 评测流程
+![当前流程与实现边界](docs/assets/current-workflow.zh.svg)
 
-![拟定评测流程：独立 AI 从 DXF 重构并比较体积 IoU，检查标注碰撞，并依据人工标注检查剖切位置。](docs/assets/evaluation-workflow.zh.svg)
+SolidWorks 本地试验中，出图 AI 保存原生工程图并写提交标记。CLI 结束后，控制程序重开原生图纸，导出最终 DXF、提取实际视图／剖切 JSON，再渲染 DXF 为 PNG。重建 AI 只接收最终 DXF、该 PNG 和通用说明，不能读取原 STEP、原生 CAD、GT、出图日志或派生 JSON。
 
-*当前拟定评测流程，完整评分链路尚未接通。*
+- **剖切评分 JSON 由程序派生**，不由 AI 自报。本地原生状态提取器与仓库公共日志接口尚未接通。
+- **IoU 规则**：各自居中和等比例归一化，搜索 24 个旋转，再镜像搜索 24 个旋转，采用较高值。镜像严格更高时同时报告两值并标记；绝对尺寸诊断另列。
+- **专家校正暂缓**：不做专家 DXF 的 AI 重建 STEP，也不除以专家重建 IoU。
+- **不使用尺寸链验证主流程**。剖切证据匹配、完整碰撞扣分、视图冗余和总分校准仍待完成。
 
-独立验证 AI 的输入仅为 DXF 与通用说明，原 STEP、人工真值（GT）、操作日志和派生 JSON 不挂载给它。两个 AI 的角色和文件访问边界分开。剖切检查将脚本派生的实际状态与人工要求匹配，同时核验实际 DXF 证据；AI 自述不能代替可信操作记录。
+## 本地试验结果
 
-[日志派生报告与开放接口](docs/OPERATION_LOG_DERIVATION.md)提供可运行的流式 JSONL 读取、状态归约和 CLI。真实 CAD 后端适配、最终快照采集、GT 匹配与 DXF 证据检查仍待接入，解析成功不表示图纸评分通过。跟踪见 [issue #14](https://github.com/sunzhenchuan007/benchcad-3d2d/issues/14)。
+Case 13 使用 SolidWorks 2023、Codex CLI 0.163.0 和 `gpt-6.1-sol / high`。仅旋转 IoU 为 **0.4848302861**，当前采用镜像后的 **0.9996046703**。两次有效 AI 阶段合计 **34 分 3.5 秒**，不含环境准备和评测时间。这是本地流程试验，不是完整 benchmark 总分或排行榜成绩。
 
-| 分项 | 评价内容 |
-| --- | --- |
-| 几何恢复 | 重构 STEP 与参考 STEP 的体积 IoU，保留真实尺度 |
-| 专业剖切 | 沿轴剖包含关键轴，或横切经过规定轴向位置；角度可不作要求 |
-| 图纸质量 | 实际 DXF 的标注碰撞／遮挡和视图冗余 |
+[试验报告](docs/experiments/case013-solidworks-codex.md) · [结果摘要 JSON](docs/experiments/case013-summary.json) · [实现缺口](docs/STATUS.md)
 
-先用专家 DXF 校准验证 AI 的重构可靠性。推荐剖切奖励、必要剖切缺失扣分、容差和总分权重尚未冻结；旧 40/35/20/5 权重不用于当前路线。
-
-## 标注工作台
-
-[2d.cuptlab.site](https://2d.cuptlab.site) 提供 STEP 预览、标准视角、轴线吸附高亮、剖切位置与可选角度标注，以及精简 JSON 导入／导出。姓名在同一浏览器内记忆，可通过“下一个 case”连续标注；上传新 STEP 的网页入口和后台接口已上线。
-
-工作台包含本地七个案例的模型页面，其中 Case 84 未识别到可选轴线，当前仅支持查看模型。网页部署和仓库源案例注册分别记录。网页实现及 Case 11 的实验材料尚未纳入仓库默认分支。
-
-## 仓库内容和状态
-
-当前主分支登记六个 T1 源案例：**01、13、15、84、86、88**，共十六份 STEP／SLDPRT 源文件，保持原版本路径和来源记录。源文件完整性校验已提供；正式评分就绪状态见 [STATUS.md](docs/STATUS.md)。
+## 文件组织
 
 ```text
-cases/<case_id>/
-├── case.json          # 源文件清单、哈希和就绪状态
-└── sources/           # 原 STEP/SLDPRT 版本
-
-docs/
-├── DESIGN.md          # 当前评测方案
-├── INPUT_OUTPUT.md    # 待冻结的输入、GT、提交和验证边界
-├── CASE_SPEC.md       # 已有源数据注册合同
-└── STATUS.md          # 实现状态及下一步
+cases/                    已登记的源清单与 STEP/SLDPRT 文件
+backends/solidworks/      SolidWorks 后端说明与迁移范围
+backends/freecad/         FreeCAD 后端方案与验收清单
+agents/codex_cli/         Agent 交互与 CLI 职责
+runner/                   控制程序职责说明
+evaluation/               公共指标政策说明
+tools/                    可执行的源校验、日志消费者接口
+docs/                     架构、协议、决定与试验报告
 ```
+
+后端、Agent、runner 和 evaluation 目录当前提供文档，不是已安装可运行的软件包。源注册表仍为六例 **01、13、15、84、86、88**，共十六份 CAD 文件。另选 T1 01–10 作为后续批次，不等于本次已导入或跑完十例。
 
 ```bash
 python tools/verify_sources.py
+python -m unittest discover -s tests -v
 ```
 
-该命令检查路径、格式、大小、SHA-256 和注册清单一致性，不运行 AI 重构、不验证图纸或计算模型分数。
+这些命令检查源文件完整性和合成日志协议，不运行 CAD 或 AI，不计算几何分数，也不证明完整隔离。
 
-## 进一步阅读
+## 阅读入口
 
-- [日志派生接口与 GT 兼容报告](docs/OPERATION_LOG_DERIVATION.md)
-- [案例合同](docs/CASE_SPEC.md)
-- [贡献指南](CONTRIBUTING.md)
-- [源数据复核说明](docs/REVIEWING.md)
-- [历史尺寸链算法](docs/RELATION_SEARCH.md)
-- [历史尺寸链 JSON 示例](examples/dimension_chain/README.md)
+- [公共架构与运行产物目录](docs/ARCHITECTURE.md)
+- [输入、输出、反馈与提交](docs/INPUT_OUTPUT.md)
+- [评测方案](docs/DESIGN.md) · [已确认决定与 PR 整理](docs/DECISIONS.md)
+- [操作日志派生接口](docs/OPERATION_LOG_DERIVATION.md)
+- [源案例合同](docs/CASE_SPEC.md) · [贡献说明](CONTRIBUTING.md)
+- [剖切标注工作台](https://2d.cuptlab.site)：已有部署，本次未检查在线状态或修改部署
 
-历史尺寸链材料保留供研究和追溯，不作为当前评测路线的必需步骤。仓库组织参考 [BenchCAD 2 main](https://github.com/BenchCAD-org/benchcad-2-main)；新的三维到二维评测仍需独立校准。
+历史[尺寸链材料](docs/RELATION_SEARCH.md)保留供追溯。仓库组织参考 [BenchCAD 2 main](https://github.com/BenchCAD-org/benchcad-2-main)；归一化并允许镜像的指标明确属于本地 3D2D 政策，不冒充未修改的上游指标。

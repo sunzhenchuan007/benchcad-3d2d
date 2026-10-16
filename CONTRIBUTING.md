@@ -1,6 +1,6 @@
 # Contributing
 
-This project develops a STEP-to-drawing benchmark with feature recognition as a major scored component. Current work starts from the six pilot cases and the [design proposal](docs/DESIGN.md).
+This project evaluates STEP-to-drawing AI through independent reconstruction, section requirements and drawing quality. SolidWorks and FreeCAD are separate CAD backends in one repository. See the [current design](docs/DESIGN.md) and [implementation status](docs/STATUS.md).
 
 ## Contribution loop
 
@@ -16,11 +16,13 @@ Prefer one case per data PR; changes to the corresponding registry entry are all
 ## Engineering rules
 
 - Preserve source geometry and distinct versions; document intentional replacements.
-- Use the final feature structure and parameter constraints to construct GT. Do not require paired drawings.
+- Use selected STEP geometry as the reconstruction reference and approved human section requirements as section GT. Full dimension-chain extraction and expert-DXF reconstruction correction are not prerequisites.
 - Keep model-visible STEP input separate from private GT sources.
-- Accept equivalent constructions. Do not grade raw CQ text or original feature order as the answer.
+- Accept equivalent valid drawing layouts and expressions. Do not grade raw CQ text or original feature order as the answer.
 - Do not fabricate parameters, sources, extraction results, or successful validation.
-- Mark unsupported feature classes explicitly; they must not silently pass.
+- Mark unsupported view/section types and extraction gaps explicitly; they must not silently pass.
+- State backend, CAD/tool/model versions, budgets and metric version for every run.
+- Keep local evidence separate from published executable capability; do not publish credentials, host settings, raw private logs or unapproved GT.
 - Keep score proposals distinct from implemented and calibrated metrics.
 - Commit with a DCO sign-off (`git commit -s`) using the contributor's configured identity.
 
