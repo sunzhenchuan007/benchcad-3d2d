@@ -36,18 +36,20 @@ The drawing AI receives the selected standardized STEP and public tool instructi
 Neutral geometric references may be computed from that exact STEP. Native CAD,
 manual section targets and expert drawing references remain unavailable to it.
 
-The current submission is a DXF drawing and JSON describing its actual sections
-and their view/drawing associations. Recognition of holes and other features is
+The AI submits only a DXF drawing. A trusted CAD backend records successful
+operations and final snapshots; evaluator-side code derives actual section JSON
+and its drawing associations. The log-consumer interface is implemented; real
+CAD adapters and final-state capture remain pending. Recognition of holes and other features is
 assessed through the resulting drawing, reconstructed geometry and section
 expression; a separate feature-tree or dimension-chain JSON is not required.
 
 An independent verification AI reconstructs STEP from the submitted DXF only.
-The original STEP, reference STEP, submission JSON and private GT are not mounted
+The original STEP, reference STEP, operation logs, derived JSON and private GT are not mounted
 in its workspace. A script compares the reconstructed and reference solids using
 volume IoU. Other checks inspect section positions and actual DXF annotation
 collisions, with weights and acceptance policies still to be calibrated.
 
-The drawing and its section records must agree; a section declared only in JSON
+The drawing and its derived section records must agree; a section declared only in JSON
 does not prove it is present on the drawing. The target boundaries are specified
 in [INPUT_OUTPUT.md](INPUT_OUTPUT.md). Historical [dimension-chain examples](../examples/dimension_chain/README.md)
 and [relation-search algorithms](RELATION_SEARCH.md) are retained for reference.

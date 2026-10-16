@@ -13,3 +13,4 @@ jobs:
         with:
           python-version: '3.11'
       - run: python tools/verify_sources.py
+      - run: python -m unittest discover -s tests -v
