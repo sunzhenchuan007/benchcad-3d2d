@@ -13,6 +13,7 @@ runs/
 # Local launcher paths, machine configuration and raw execution records.
 .local/
 .launcher/
+.metric-reviews/
 *.local.toml
 .env
 .env.*

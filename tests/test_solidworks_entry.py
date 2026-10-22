@@ -117,6 +117,50 @@ class EntryTests(unittest.TestCase):
         self.assertEqual(entry.snapshot(self.root)['launcher']['status'], 'entry_failed')
         self.assertFalse((self.root / '.launcher/entry.lock').exists())
 
+    def metric_config(self):
+        config = self.root / 'entry.toml'
+        config.write_text('[pilot]\nroot = "."\npython = ' + json.dumps(self.python.as_posix()) +
+                          '\n[metrics]\nroot = "shared"\n', encoding='utf-8')
+        self.write('config.json', {'geometry_python': str(self.python)})
+        script = self.root / 'shared/evaluation/rescore.py'
+        script.parent.mkdir(parents=True)
+        script.write_text('', encoding='utf-8')
+        return config
+
+    def test_score_forwards_frozen_artifacts_without_model_launch(self):
+        config = self.metric_config()
+        output = self.root / 'review'
+        with patch.object(entry.subprocess, 'run') as run:
+            run.return_value.returncode = 0
+            self.assertEqual(entry.main(['score','--config',str(config),
+                '--metrics-root',str(self.root/'shared'),'--output-dir',str(output)]),0)
+        command = run.call_args.args[0]
+        self.assertEqual(command[0],str(self.python))
+        self.assertEqual(command[command.index('--dxf')+1],str(self.root/'drawing/output/frozen/drawing.dxf'))
+        self.assertEqual(command[command.index('--native-views')+1],str(self.root/'drawing/output/frozen/drawing.json'))
+        self.assertEqual(run.call_args.kwargs['timeout'],300)
+
+    def test_score_timeout_is_failure_not_traceback(self):
+        config = self.metric_config()
+        with patch.object(entry.subprocess, 'run', side_effect=entry.subprocess.TimeoutExpired('fixture',300)), contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(entry.main(['score','--config',str(config),
+                '--metrics-root',str(self.root/'shared'),'--output-dir',str(self.root/'review')]),2)
+
+    def test_successful_closeout_updates_review_pointer_and_preserves_history(self):
+        config = self.metric_config()
+        self.write('results.json', {'metrics': {'reconstruction_iou': .99}})
+        before = (self.root/'results.json').read_bytes()
+        metrics = {'overall_score': None, 'annotation_collision': {'score': .95}}
+        def score_process(command, **kwargs):
+            output = Path(command[command.index('--output-dir')+1])
+            output.mkdir(parents=True)
+            (output/'metrics.json').write_text(json.dumps({'metrics':metrics}))
+            return entry.subprocess.CompletedProcess(command,0)
+        with patch.object(entry,'launch',return_value={'launcher':{'exit_code':0}}), patch.object(entry.subprocess,'run',side_effect=score_process), contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(entry.main(['run','--config',str(config)]),0)
+        self.assertEqual(entry.snapshot(self.root)['current_metrics'],metrics)
+        self.assertEqual((self.root/'results.json').read_bytes(),before)
+
 
 if __name__ == '__main__':
     unittest.main()

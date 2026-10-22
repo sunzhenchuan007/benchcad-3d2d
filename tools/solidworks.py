@@ -52,8 +52,12 @@ def load_config(path):
     try:
         doc = tomllib.loads(path.read_text(encoding='utf-8-sig'))
         cfg = doc['pilot']
-        if set(doc) != {'pilot'} or set(cfg) != {'root', 'python'}:
+        if not {'pilot'} <= set(doc) <= {'pilot', 'metrics'} or set(cfg) != {'root', 'python'}:
             raise ValueError('Unexpected configuration keys')
+        if 'metrics' in doc and (not isinstance(doc['metrics'],dict) or set(doc['metrics']) != {'root'}
+                                or not isinstance(doc['metrics']['root'],str)
+                                or not doc['metrics']['root'].strip()):
+            raise ValueError('Expected only a shared local metrics root')
         if not all(isinstance(v, str) and v.strip() for v in cfg.values()):
             raise ValueError('Expected nonempty paths')
         paths = [Path(cfg[k]).expanduser() for k in ('root', 'python')]
@@ -115,6 +119,10 @@ def snapshot(root):
     launch = read_json(root / '.launcher' / latest['id'] / 'launch.json') if (
         isinstance(latest, dict) and isinstance(latest.get('id'), str)
         and len(latest['id']) == 32 and all(c in '0123456789abcdef' for c in latest['id'])) else None
+    metric_latest = read_json(root / '.metric-reviews/latest.json') or {}
+    metric_id = metric_latest.get('id') if isinstance(metric_latest,dict) else None
+    reviewed = read_json(root/'.metric-reviews'/metric_id/'metrics.json') if (
+        isinstance(metric_id,str) and len(metric_id)==32 and all(c in '0123456789abcdef' for c in metric_id)) else None
     episodes = results.get('episodes') or []
     for stage, entry in stages.items():
         rows = [r for r in episodes if isinstance(r, dict) and r.get('stage') == stage] if isinstance(episodes, list) else []
@@ -125,6 +133,7 @@ def snapshot(root):
             'lock_note': 'A lock may be active or stale; presence does not prove liveness.',
             'stages': stages, 'metrics': metrics, 'formal_score': False,
             'artifacts': artifacts, 'launcher': launch,
+            'current_metrics': reviewed.get('metrics') if isinstance(reviewed,dict) else None,
             'model_rounds': None, 'model_round_limit_enforced_by_entry': False}
 
 
@@ -256,6 +265,11 @@ def main(argv=None):
         if name == 'run':
             sub.add_argument('--resume', action='store_true')
             sub.add_argument('--dry-run', action='store_true')
+    score = commands.add_parser('score', help='Local three-metric review; no model calls and no historical overwrite')
+    score.add_argument('--config', type=Path, required=True)
+    score.add_argument('--metrics-root', type=Path, required=True, help='Local CadQuery repository containing shared evaluation code')
+    score.add_argument('--output-dir', type=Path, required=True)
+    score.add_argument('--expert-json', type=Path)
     args = parser.parse_args(argv)
     try:
         if args.command == 'init':
@@ -276,15 +290,41 @@ def main(argv=None):
                 result = doctor(root, python)
             elif args.command in ('status', 'results'):
                 result = snapshot(root)
+            elif args.command == 'score':
+                script = args.metrics_root.resolve()/'evaluation/rescore.py'
+                if not script.is_file():
+                    raise EntryError('Shared local evaluation/rescore.py is missing.')
+                geometry_python = Path(runtime_config(root)['geometry_python'])
+                command = [str(geometry_python), '-W', 'ignore', str(script),
+                           '--dxf', str(root/'drawing/output/frozen/drawing.dxf'),
+                           '--native-views', str(root/'drawing/output/frozen/drawing.json'),
+                           '--iou-json', str(root/'evaluator/iou.json'),
+                           '--output-dir', str(args.output_dir.resolve())]
+                if args.expert_json:
+                    command += ['--expert-json', str(args.expert_json.resolve())]
+                completed = subprocess.run(command, cwd=args.metrics_root.resolve(), timeout=300)
+                return 0 if completed.returncode == 0 else 1
             else:
                 result = launch(root, python, args.resume, args.dry_run)
+                metric_config = tomllib.loads(args.config.read_text(encoding='utf-8-sig')).get('metrics')
+                if not args.dry_run and result['launcher']['exit_code'] == 0 and metric_config:
+                    metric_root = Path(metric_config['root'])
+                    if not metric_root.is_absolute():
+                        metric_root = args.config.resolve().parent / metric_root
+                    review = root / '.metric-reviews' / uuid.uuid4().hex
+                    code = main(['score','--config',str(args.config),'--metrics-root',str(metric_root),
+                                 '--output-dir',str(review)])
+                    result['metric_review'] = {'exit_code':code,'directory':review.relative_to(root).as_posix()}
+                    if code == 0:
+                        result['current_metrics'] = read_json(review/'metrics.json')['metrics']
+                        save(root/'.metric-reviews/latest.json', {'id':review.name})
         print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
         if args.command == 'doctor' and not result['ready_for_existing_runtime']:
             return 2
         if args.command == 'run' and not args.dry_run:
-            return 0 if result['launcher']['exit_code'] == 0 else 1
+            return 0 if result['launcher']['exit_code'] == 0 and result.get('metric_review',{}).get('exit_code',0)==0 else 1
         return 0
-    except (EntryError, OSError, ValueError, TypeError) as exc:
+    except (EntryError, OSError, ValueError, TypeError, subprocess.SubprocessError) as exc:
         message = str(exc) if isinstance(exc, EntryError) else 'Local operation failed; inspect runtime files and permissions.'
         print(json.dumps({'schema': SCHEMA, 'status': 'error', 'message': message}), file=sys.stderr)
         return 2
