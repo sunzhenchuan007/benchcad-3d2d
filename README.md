@@ -6,7 +6,7 @@
 
 | Backend | Status | Start here |
 |---|---|---|
-| With SolidWorks | Local Windows + Codex CLI Case 13 pipeline completed; portable runner not yet published | [Backend](backends/solidworks/README.md) · [Detailed agent guide](docs/AGENT_SOLIDWORKS_CODEX.md) |
+| With SolidWorks | Local pilot completed; operator CLI available for prepared Windows runtimes; full runtime not bundled | [Quick start](docs/SOLIDWORKS_QUICKSTART.zh-CN.md) · [Backend](backends/solidworks/README.md) |
 | With FreeCAD | Planned; no end-to-end benchmark run claimed | [Backend and acceptance checklist](backends/freecad/README.md) |
 
 The backends share cases, task rules and evaluation policy, while keeping CAD tools, native formats and installation separate. Codex CLI is the agent runtime and can be used with either backend. Installing one backend does not require the other.
@@ -41,7 +41,10 @@ tools/                    Source checks and executable log-consumer interface
 docs/                     Architecture, contracts, decisions and pilot report
 ```
 
-Backend, agent, runner and evaluation directories currently contain documentation, not installable runtimes. The default source registry still has six T1 cases: **01, 13, 15, 84, 86, 88**, with sixteen archived CAD files. Selecting T1 01–10 for a later batch does not add or validate them here.
+Backend, agent, runner and evaluation directories currently contain documentation, not installable runtimes.
+`tools/solidworks.py` provides configuration, checks, launch and result access for an existing
+prepared SolidWorks pilot; it does not install CAD or prepare a new case.
+The default source registry still has six T1 cases: **01, 13, 15, 84, 86, 88**, with sixteen archived CAD files. Selecting T1 01–10 for a later batch does not add or validate them here.
 
 ```bash
 python tools/verify_sources.py

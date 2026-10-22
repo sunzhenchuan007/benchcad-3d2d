@@ -4,6 +4,9 @@ Updated 2026-10-16. **One repository, two CAD backends. SolidWorks has a local C
 
 ## In the repository
 
+- Operator CLI for prepared SolidWorks runtimes: `tools/solidworks.py` supports
+  init, doctor, run, status and results. No new CAD/model trial is implied;
+  the controller/tool runtime still needs separate local preparation.
 - Six registered T1 source cases: 01, 13, 15, 84, 86, 88; sixteen STEP/SLDPRT assets.
 - Source path, size and SHA-256 checks; source readiness unchanged by this update.
 - Bounded operation-log consumer and synthetic protocol tests, merged in PR #15. No vendor adapter, CAD execution or geometry scoring in that consumer.

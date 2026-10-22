@@ -6,7 +6,7 @@
 
 | 版本 | 当前状态 | 从这里开始 |
 |---|---|---|
-| With SolidWorks | Windows＋Codex CLI 的 Case 13 本地流程已跑通；可移植运行代码尚未发布 | [后端说明](backends/solidworks/README.md) · [AI 如何工作](docs/AGENT_SOLIDWORKS_CODEX.md) |
+| With SolidWorks | 本地流程已跑通；提供统一入口调用已准备的 Windows 环境，完整运行环境尚未打包 | [运行入口](docs/SOLIDWORKS_QUICKSTART.zh-CN.md) · [后端说明](backends/solidworks/README.md) |
 | With FreeCAD | 待实现，尚无本项目端到端试验结果 | [后端方案与验收清单](backends/freecad/README.md) |
 
 两套后端共享案例、任务规则和指标，各自维护 CAD 工具、原生格式和安装环境。Codex CLI 是 Agent 运行系统，可以分别使用两套 CAD；使用一套后端不要求安装另一套。
@@ -42,6 +42,9 @@ docs/                     架构、协议、决定与试验报告
 ```
 
 后端、Agent、runner 和 evaluation 目录当前提供文档，不是已安装可运行的软件包。源注册表仍为六例 **01、13、15、84、86、88**，共十六份 CAD 文件。另选 T1 01–10 作为后续批次，不等于本次已导入或跑完十例。
+
+`tools/solidworks.py` 已提供可执行的配置、检查、启动、进度和结果入口，
+连接已有本地试验目录；不自动安装 SolidWorks、不准备新 case、不读取登录文件。
 
 ```bash
 python tools/verify_sources.py
