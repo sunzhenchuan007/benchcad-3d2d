@@ -58,6 +58,28 @@ python tools/solidworks.py run --config .local/solidworks.toml
 此时保留运行锁并记录 `entry_interrupted_child_may_be_running`，由操作者核实本次进程，
 不要直接删除锁重跑。入口不关闭其他用户的 SolidWorks 会话。
 
+### 三项 Metric：共享评分入口
+
+两后端共用 [CadQuery 仓库](https://github.com/sunzhenchuan007/benchcad-3d2d-cadquery) 的 `evaluation/` 代码。
+完整设计见 [三个 Metric 中文讲解](https://github.com/sunzhenchuan007/benchcad-3d2d-cadquery/blob/main/docs/METRICS.zh-CN.md)。
+先在 pilot 配置指定的 `geometry_python` 环境安装共享仓库的 CAD 依赖：`python -m pip install -e "../benchcad-3d2d-cadquery[cad]"`。这里的 `python` 必须是该 CAD 环境的解释器。可在被忽略的入口配置中增加
+`[metrics]` 与 `root = "相对于配置文件的共享评分仓库路径"`，在控制程序正常退出后自动
+另存 `.metric-reviews/<编号>/`，不覆盖旧 results.json。没有该配置就保留原运行行为。
+
+已有试验可单独执行，不调用模型：
+
+```powershell
+python tools/solidworks.py score --config .local/solidworks.toml --metrics-root ../benchcad-3d2d-cadquery --output-dir .local/new-metric-review
+```
+
+IoU 先用基准体校正，再将 0.90～0.995 映射到 0～1。碰撞项检查文字与文字、
+文字与轮廓线、标注线、中心线和剖切线，边缘接触也算；线与线相交不扣分。
+每组去重碰撞扣 0.05，另存黑色底图、红框标记的 DXF/PNG。字体缺失时只报告
+诊断位置，碰撞分数为空，不把环境问题扣给 AI。
+第三项须有专家 JSON 及通过核验的实际视图证据；SW 原生剖切证据适配尚待核验，
+不能只把历史 drawing.json 当成已验证证据。缺一项总分为 null；三项齐全时相乘。
+历史 IoU 的 raw/baseline 复用，不重新计算几何；本次不涉及专家图纸重建。
+
 ## 4. 看进度和结果
 
 另开一个终端：

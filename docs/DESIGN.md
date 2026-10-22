@@ -4,6 +4,8 @@
 
 本页为当前规则入口，替代早期尺寸链验证、AI 自写剖切评分 JSON 和专家重建分母校正的方案。完整总分尚未冻结；后端状态见 [STATUS.md](STATUS.md)。
 
+> 评分实现更新：当前共享评测采用三项 0～1 分数相乘、基准校正 IoU 的 0.90～0.995 映射，以及包含边缘接触的文字碰撞检查。以 [三项 Metric 设计](https://github.com/sunzhenchuan007/benchcad-3d2d-cadquery/blob/main/docs/METRICS.zh-CN.md) 和 [SW 评分入口](SOLIDWORKS_QUICKSTART.zh-CN.md) 为准。下文保留历史试验与设计背景，SW 原生专家证据适配仍待完成。
+
 ## 1. 输入、观察和输出
 
 出图 AI 可直接读取标准化 STEP，并用 Python 计算几何、调用 CAD、渲染和查看自己的二维图纸。当前 SolidWorks 试验没有默认六视图或独立的六视图查询服务。模型可在任务预算内多次生成预览；先渲染再调用看图工具，才得到图像反馈。
