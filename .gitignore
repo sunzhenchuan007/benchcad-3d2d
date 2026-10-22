@@ -9,3 +9,14 @@ reports/
 
 # Local per-case/backend/run artifacts; publish curated summaries only.
 runs/
+
+# Local launcher paths, machine configuration and raw execution records.
+.local/
+.launcher/
+*.local.toml
+.env
+.env.*
+auth.json
+credentials*
+*.pem
+*.key
